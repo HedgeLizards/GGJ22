@@ -37,7 +37,7 @@ jobs:
           base_version: 0.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: find .
+      - run: find ~
       - run: pwd
       - run: mkdir public
       - run: curl -L https://github.com/HedgeLizards/GGJ21/releases/latest/download/HTML5.zip -o HTML5.zip
