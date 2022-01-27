@@ -38,15 +38,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: find ~
+      - run: cd /home/runner/.local/share/godot/builds/HTML5/
       - run: pwd
-      - run: mkdir public
-      - run: curl -L https://github.com/HedgeLizards/GGJ21/releases/latest/download/HTML5.zip -o HTML5.zip
-      - run: unzip HTML5.zip -d ./public/
+      - run: ln -s hedgelizards_ggj22.html index.html
+      #- run: curl -L https://github.com/HedgeLizards/GGJ22/releases/latest/download/HTML5.zip -o HTML5.zip
+      #- run: unzip HTML5.zip -d ./public/
       - name: publish page
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/master' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: .
       
 
