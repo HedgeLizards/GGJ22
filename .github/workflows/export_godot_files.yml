@@ -14,7 +14,7 @@ jobs:
   # job id, can be anything
   export_game:
     # Always use ubuntu-latest for this action
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     # Job name, can be anything
     name: Export Game Job
     steps:
@@ -39,6 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: cp -r /home/runner/.local/share/godot/builds/HTML5/ .
       - run: cp HTML5/hedgelizards_ggj22.html HTML5/index.html
+      - run: find HTML5
       - name: publish page
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/master' }}
