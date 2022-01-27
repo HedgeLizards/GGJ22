@@ -14,7 +14,7 @@ jobs:
   # job id, can be anything
   export_game:
     # Always use ubuntu-latest for this action
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     # Job name, can be anything
     name: Export Game Job
     steps:
