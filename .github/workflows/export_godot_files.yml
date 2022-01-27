@@ -38,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: mkdir public
-      - run: curl https://github.com/HedgeLizards/GGJ21/releases/latest/download/HTML5.zip -o HTML5.zip
+      - run: curl -L https://github.com/HedgeLizards/GGJ21/releases/latest/download/HTML5.zip -o HTML5.zip
       - run: unzip HTML5.zip -d ./public/
       - name: publish page
         uses: peaceiris/actions-gh-pages@v3
