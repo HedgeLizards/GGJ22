@@ -37,12 +37,13 @@ jobs:
           base_version: 0.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: ls -a exports
       - run: mkdir public
       - run: curl -L https://github.com/HedgeLizards/GGJ21/releases/latest/download/HTML5.zip -o HTML5.zip
       - run: unzip HTML5.zip -d ./public/
       - name: publish page
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
