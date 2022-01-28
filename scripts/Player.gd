@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-export var speed = 100
+export var speed = 250
 
 
 const Bullet = preload("res://scenes/Bullet.tscn")
