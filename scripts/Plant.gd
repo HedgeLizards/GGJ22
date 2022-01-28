@@ -21,17 +21,17 @@ func _process(delta):
 	update()
 
 func _on_Area2D_mouse_entered():
-	Main.hovered_plant = self
+	Main.hovered_plants.push_back(self)
 	
 	Tooltip.text = 'Click and hold to water the plant'
 
 func _on_Area2D_mouse_exited():
-	if Main.hovered_plant == self:
-		Main.hovered_plant = null
-		
+	Main.hovered_plants.erase(self)
+	
+	if Main.hovered_plants.empty():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	if Main.hovered_plant == self:
+	if Main.hovered_plants.front() == self:
 		draw_rect(Rect2(-82, -52, 164, 10), Color.blue, false, 4)
 		draw_rect(Rect2(-80, -50, 160 * humidity, 6), Color.blue)
