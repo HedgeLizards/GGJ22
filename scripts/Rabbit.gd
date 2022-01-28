@@ -17,7 +17,7 @@ func _on_RethinkTimer_timeout():
 		direction = Vector2(1, 0).rotated(randf() * 2 * PI)
 	else:
 		status = Status.IDLE
-	$RethinkTimer.wait_time = 1+randf()*2
+	$RethinkTimer.wait_time = 0.5+randf()
 
 
 func _physics_process(delta):
