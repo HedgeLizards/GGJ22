@@ -13,7 +13,7 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot") and get_node("/root/Main/DayNight").is_night():
 		shoot()
 
 
