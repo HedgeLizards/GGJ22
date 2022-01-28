@@ -12,6 +12,20 @@ onready var viewport = get_viewport()
 onready var Main = get_parent()
 onready var Player = Main.get_node('Player')
 
+func _on_DayEnd_timeout():
+	release_action()
+	
+	Input.set_default_cursor_shape(CURSOR_ARROW)
+	
+	visible = false
+	
+	set_process(false)
+	set_process_input(false)
+
+func _on_NightEnd_timeout():
+	set_process(true)
+	set_process_input(true)
+
 func _process(delta):
 	if action == IDLE:
 		update_position_and_visibility()
@@ -48,19 +62,22 @@ func _input(event):
 				active_plant = Main.hovered_plants[0]
 				active_plant.watered = true
 		else:
-			percent_visible = 1
-			
-			if action != IDLE:
-				$Tween.remove_all()
-				
-				match action:
-					WATERING:
-						active_plant.watered = false
-					PLANTING:
-						update_position_and_visibility()
-						update()
-				
-				action = IDLE
+			release_action()
+
+func release_action():
+	percent_visible = 1
+	
+	if action != IDLE:
+		$Tween.remove_all()
+		
+		match action:
+			WATERING:
+				active_plant.watered = false
+			PLANTING:
+				update_position_and_visibility()
+				update()
+		
+		action = IDLE
 
 func _on_Tween_tween_step(object, key, elapsed, value):
 	update()

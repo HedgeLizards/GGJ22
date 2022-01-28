@@ -24,6 +24,7 @@ script = ExtResource( 10 )
 [node name="Sky" type="TextureRect" parent="Environment/Day"]
 margin_right = 2000.0
 margin_bottom = 128.0
+mouse_filter = 2
 texture = ExtResource( 11 )
 expand = true
 stretch_mode = 2
@@ -49,6 +50,7 @@ visible = false
 [node name="Sky" type="TextureRect" parent="Environment/Night"]
 margin_right = 2000.0
 margin_bottom = 128.0
+mouse_filter = 2
 texture = ExtResource( 12 )
 expand = true
 stretch_mode = 2
@@ -122,8 +124,10 @@ one_shot = true
 [connection signal="tween_completed" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_step"]
 [connection signal="timeout" from="DayNight/DayEnd" to="Environment" method="_on_DayEnd_timeout"]
+[connection signal="timeout" from="DayNight/DayEnd" to="Tooltip" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/DayEnd" to="Player" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/DayEnd" to="DayNight" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="Environment" method="_on_NightEnd_timeout"]
+[connection signal="timeout" from="DayNight/NightEnd" to="Tooltip" method="_on_NightEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="Player" method="_on_NightEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="DayNight" method="_on_NightEnd_timeout"]
