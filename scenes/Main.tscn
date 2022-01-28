@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Rabbit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Obstacle.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node"]
 
@@ -29,6 +30,22 @@ position = Vector2( 562, 295 )
 
 [node name="Rabbit3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 433, 222 )
+
+[node name="LeftEdge" parent="." instance=ExtResource( 4 )]
+position = Vector2( -6, 493 )
+scale = Vector2( 1, 50 )
+
+[node name="RightEdge" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1371, 502 )
+scale = Vector2( 1, 50 )
+
+[node name="TopEdge" parent="." instance=ExtResource( 4 )]
+position = Vector2( 667, 12 )
+scale = Vector2( 70, 1 )
+
+[node name="BottomEdge" parent="." instance=ExtResource( 4 )]
+position = Vector2( 681, 982 )
+scale = Vector2( 70, 1 )
 
 [connection signal="tween_completed" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_step"]
