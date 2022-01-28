@@ -23,7 +23,7 @@ script = ExtResource( 10 )
 
 [node name="Sky" type="TextureRect" parent="Environment/Day"]
 margin_right = 2000.0
-margin_bottom = 128.0
+margin_bottom = 1000.0
 mouse_filter = 2
 texture = ExtResource( 11 )
 expand = true
@@ -33,9 +33,9 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Environment/Day"]
-margin_top = 100.0
+margin_top = 200.0
 margin_right = 2000.0
-margin_bottom = 2100.0
+margin_bottom = 2200.0
 mouse_filter = 2
 texture = ExtResource( 8 )
 expand = true
@@ -49,7 +49,7 @@ visible = false
 
 [node name="Sky" type="TextureRect" parent="Environment/Night"]
 margin_right = 2000.0
-margin_bottom = 128.0
+margin_bottom = 1000.0
 mouse_filter = 2
 texture = ExtResource( 12 )
 expand = true
@@ -59,9 +59,9 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Environment/Night"]
-margin_top = 100.0
+margin_top = 200.0
 margin_right = 2000.0
-margin_bottom = 2100.0
+margin_bottom = 2200.0
 mouse_filter = 2
 texture = ExtResource( 9 )
 expand = true
@@ -82,16 +82,16 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Tooltip"]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 467, 319 )
+position = Vector2( 450, 385 )
 
 [node name="Rabbit" parent="." instance=ExtResource( 1 )]
-position = Vector2( 307, 300 )
+position = Vector2( 284, 400 )
 
 [node name="Rabbit2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 562, 295 )
+position = Vector2( 505, 503 )
 
 [node name="Rabbit3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 433, 222 )
+position = Vector2( 683, 442 )
 
 [node name="LeftEdge" parent="." instance=ExtResource( 4 )]
 position = Vector2( -6, 493 )
@@ -102,7 +102,7 @@ position = Vector2( 1371, 502 )
 scale = Vector2( 1, 50 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 667, 100 )
+position = Vector2( 667, 200 )
 scale = Vector2( 70, 1 )
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
