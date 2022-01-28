@@ -1,16 +1,24 @@
 extends Label
 
+const Plant = preload('res://scenes/Plant.tscn')
+
 enum { IDLE, PLANTING, WATERING, HARVESTING }
 
 var action = IDLE
-var plant
+var active_plant
 var animation = 0
 
-onready var Player = $'../Player'
-onready var Main = get_parent()
 onready var viewport = get_viewport()
+onready var Main = get_parent()
+onready var Player = Main.get_node('Player')
 
-func update_position_and_visibility(mouse_position):
+func _process(delta):
+	if action == IDLE:
+		update_position_and_visibility()
+
+func update_position_and_visibility():
+	var mouse_position = viewport.get_mouse_position()
+	
 	if mouse_position.distance_to(Player.position) < 200:
 		rect_position = mouse_position + Vector2(-rect_size.x / 2, 20)
 		
@@ -23,31 +31,34 @@ func update_position_and_visibility(mouse_position):
 		visible = false
 
 func _input(event):
-	if event is InputEventMouseMotion && action == IDLE:
-		update_position_and_visibility(event.position)
-	elif visible && event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+	if visible && event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		if event.pressed:
 			percent_visible = 0
 			
-			if Main.hovered_plant == null:
+			if Main.hovered_plants.empty():
 				$Tween.interpolate_property(self, 'animation', 0, 1, 2)
 				$Tween.start()
 				
 				action = PLANTING
-			elif Main.hovered_plant.fullgrown:
+			elif Main.hovered_plants.front().fullgrown:
 				action = HARVESTING
 			else:
 				action = WATERING
 				
-				plant = Main.hovered_plant
-				plant.watered = true
+				active_plant = Main.hovered_plants.front()
+				active_plant.watered = true
 		else:
 			percent_visible = 1
 			
 			if action != IDLE:
 				$Tween.remove_all()
 				
-				_on_Tween_tween_completed(null, null)
+				match action:
+					WATERING:
+						active_plant.watered = false
+					PLANTING:
+						update_position_and_visibility()
+						update()
 				
 				action = IDLE
 
@@ -57,14 +68,20 @@ func _on_Tween_tween_step(object, key, elapsed, value):
 func _on_Tween_tween_completed(object, key):
 	match action:
 		WATERING:
-			plant.watered = false
+			active_plant.watered = false
 		PLANTING:
+			update_position_and_visibility()
+			update()
+			
 			action = IDLE
 			
-			update_position_and_visibility(viewport.get_mouse_position())
-			update()
+			var new_plant = Plant.instance()
+			
+			new_plant.position = rect_position - Vector2(-rect_size.x / 2, 20)
+			
+			Main.add_child(new_plant)
 
 func _draw():
 	if action == PLANTING:
-		draw_rect(Rect2(rect_size.x / 2 - 82, -2, 164, 10), Color.green, false, 4)
-		draw_rect(Rect2(rect_size.x / 2 - 80, 0, 160 * animation, 6), Color.green)
+		draw_rect(Rect2(rect_size.x / 2 - 82, rect_size.y - 12, 164, 10), Color.green, false, 4)
+		draw_rect(Rect2(rect_size.x / 2 - 80, rect_size.y - 10, 160 * animation, 6), Color.green)
