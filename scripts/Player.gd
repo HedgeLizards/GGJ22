@@ -34,5 +34,14 @@ func _physics_process(delta):
 	
 	var mouse_position = get_global_mouse_position()
 	$Body.look_at(mouse_position)
-	
-	
+
+
+func _on_DayEnd_timeout():
+	$Day.visible = false
+	$Night.visible = true
+
+
+func _on_NightEnd_timeout():
+	$Day.visible = true
+	$Night.visible = false
+
