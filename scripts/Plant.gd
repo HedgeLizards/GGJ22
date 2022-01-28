@@ -32,6 +32,6 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	if Main.hovered_plants.front() == self:
+	if !Main.hovered_plants.empty() && Main.hovered_plants[0] == self:
 		draw_rect(Rect2(-82, -52, 164, 10), Color.blue, false, 4)
 		draw_rect(Rect2(-80, -50, 160 * humidity, 6), Color.blue)

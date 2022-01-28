@@ -40,12 +40,12 @@ func _input(event):
 				$Tween.start()
 				
 				action = PLANTING
-			elif Main.hovered_plants.front().fullgrown:
+			elif Main.hovered_plants[0].fullgrown:
 				action = HARVESTING
 			else:
 				action = WATERING
 				
-				active_plant = Main.hovered_plants.front()
+				active_plant = Main.hovered_plants[0]
 				active_plant.watered = true
 		else:
 			percent_visible = 1
