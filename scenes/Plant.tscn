@@ -4,8 +4,9 @@
 [ext_resource path="res://scripts/Plant.gd" type="Script" id=2]
 [ext_resource path="res://assets/lightmask.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 107.5
+height = 80.0
 
 [node name="Plant" type="Node2D" groups=["dual", "plants"]]
 z_index = -3
