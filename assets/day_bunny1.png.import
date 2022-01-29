@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/evil_bunny.png-9aaf1c8801aed1c09a2510597e16405d.stex"
+path="res://.import/day_bunny1.png-f134691187b9754caaf05b129b0e490d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/evil_bunny.png"
-dest_files=[ "res://.import/evil_bunny.png-9aaf1c8801aed1c09a2510597e16405d.stex" ]
+source_file="res://assets/day_bunny1.png"
+dest_files=[ "res://.import/day_bunny1.png-f134691187b9754caaf05b129b0e490d.stex" ]
 
 [params]
 

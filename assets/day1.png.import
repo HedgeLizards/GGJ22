@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/granny_peace.png-83ed48b831a8b4e9ea8681c63366030a.stex"
+path="res://.import/day1.png-d1b703b1c6e48182834ab3cc601dddb7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/granny_peace.png"
-dest_files=[ "res://.import/granny_peace.png-83ed48b831a8b4e9ea8681c63366030a.stex" ]
+source_file="res://assets/day1.png"
+dest_files=[ "res://.import/day1.png-d1b703b1c6e48182834ab3cc601dddb7.stex" ]
 
 [params]
 

@@ -81,26 +81,28 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Tooltip"]
 
 [node name="LeftEdge" parent="." instance=ExtResource( 4 )]
-scale = Vector2( 1, 1000 )
+position = Vector2( 0, 1224 )
+scale = Vector2( 1, 102.4 )
 
 [node name="RightEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1600, 0 )
-scale = Vector2( 1, 1000 )
+position = Vector2( 2732, 1224 )
+scale = Vector2( 1, 102.4 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1000, 200 )
-scale = Vector2( 1000, 1 )
+position = Vector2( 1366, 200 )
+scale = Vector2( 136.6, 1 )
 collision_layer = 7
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1000, 1000 )
-scale = Vector2( 1000, 1 )
+position = Vector2( 1366, 2248 )
+scale = Vector2( 136.6, 1 )
 
 [node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
 position = Vector2( 450, 385 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+zoom = Vector2( 1.5, 1.5 )
 limit_left = 0
 limit_top = 0
 smoothing_enabled = true
@@ -117,6 +119,7 @@ autostart = true
 
 [node name="NightMusic" type="AudioStreamPlayer" parent="DayNight"]
 stream = ExtResource( 13 )
+volume_db = -10.0
 
 [node name="BeatTimer" type="Timer" parent="DayNight"]
 wait_time = 0.5

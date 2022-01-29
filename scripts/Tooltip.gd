@@ -9,7 +9,6 @@ var active_plant
 var animation = 0
 var color
 
-onready var viewport = get_viewport()
 onready var Main = get_parent()
 onready var Player = Main.get_node('Player')
 
@@ -29,9 +28,9 @@ func _process(delta):
 		update_position_and_visibility()
 
 func update_position_and_visibility():
-	var mouse_position = viewport.get_mouse_position()
+	var mouse_position = get_global_mouse_position()
 	
-	if mouse_position.distance_to(Player.position) < 200:
+	if mouse_position.distance_to(Player.position) < 300 && !(mouse_position.y < 200 && Main.hovered_plants.empty()):
 		rect_position = mouse_position - Vector2(rect_size.x / 2, rect_size.y + 10)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)

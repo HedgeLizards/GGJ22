@@ -35,7 +35,7 @@ func _process(delta):
 	if $Area2D.input_pickable:
 		if watered:
 			health = min(health + delta / 2, 1)
-		else:
+		elif stage < 2:
 			health = max(health - delta / 20, 0)
 	else:
 		health -= delta / 10 * colliding_bunnies
