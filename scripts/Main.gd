@@ -1,4 +1,4 @@
 extends Node
 
 var hovered_plants = []
-var plants_collected = 0
+var plants_harvested = 0
