@@ -56,7 +56,6 @@ scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 10 )
 
 [node name="Day" type="Node2D" parent="Environment"]
-z_index = -10
 
 [node name="Hills" type="Sprite" parent="Environment/Day"]
 position = Vector2( 0, 300 )
@@ -70,13 +69,12 @@ centered = false
 
 [node name="Border" type="Sprite" parent="Environment/Day"]
 position = Vector2( 0, 653 )
-z_index = 20
+z_index = 4096
 texture = ExtResource( 16 )
 centered = false
 
 [node name="Night" type="Node2D" parent="Environment"]
 visible = false
-z_index = -10
 
 [node name="Hills" type="Sprite" parent="Environment/Night"]
 material = SubResource( 3 )
@@ -91,7 +89,7 @@ centered = false
 
 [node name="Border" type="Sprite" parent="Environment/Night"]
 position = Vector2( 0, 653 )
-z_index = 20
+z_index = 4096
 texture = ExtResource( 17 )
 centered = false
 
@@ -120,7 +118,7 @@ position = Vector2( 1024.5, 2238.75 )
 scale = Vector2( 102.45, 1 )
 
 [node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
-position = Vector2( 1024.5, 970.75 )
+position = Vector2( 1024.5, 1000 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

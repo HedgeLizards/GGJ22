@@ -16,6 +16,8 @@ const DeadBunny = preload("res://scenes/DeadBunny.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	z_index = position.y
+	
 	daychange(get_node("/root/Main/DayNight").is_night())
 
 func _on_RethinkTimer_timeout():
@@ -97,6 +99,7 @@ func die():
 	var corpse = DeadBunny.instance()
 	corpse.global_transform = global_transform
 	corpse.scale.x = $Body.scale.x
+	corpse.z_index = z_index
 	get_parent().add_child(corpse)
 	queue_free()
 
@@ -116,6 +119,7 @@ func _physics_process(delta):
 		else:
 			vel *= speed
 		move_and_slide(vel)
+		z_index = position.y
 		
 		
 

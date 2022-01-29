@@ -11,15 +11,16 @@ radius = 35.0
 radius = 90.0
 
 [node name="Rabbit" type="KinematicBody2D" groups=["bunnies", "dual", "onbeat"]]
-z_index = -1
 collision_layer = 6
 collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="DayShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -30 )
 shape = SubResource( 3 )
 
 [node name="NightShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -65 )
 shape = SubResource( 4 )
 disabled = true
 
@@ -31,9 +32,12 @@ autostart = true
 position = Vector2( 0, -25 )
 
 [node name="DaySprite" type="Sprite" parent="Body"]
+position = Vector2( 0, -30 )
 texture = ExtResource( 3 )
 
 [node name="NightSprite" type="Sprite" parent="Body"]
+visible = false
+position = Vector2( 0, -65 )
 texture = ExtResource( 1 )
 
 [connection signal="timeout" from="RethinkTimer" to="." method="_on_RethinkTimer_timeout"]

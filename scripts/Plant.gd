@@ -9,6 +9,9 @@ var colliding_bunnies = 0
 onready var Main = get_node("/root/Main")
 onready var Tooltip = Main.get_node('CanvasLayer/Tooltip')
 
+func _ready():
+	z_index = position.y
+
 func daychange(is_night):
 	if is_night:
 		if new:
@@ -64,5 +67,5 @@ func _on_Area2D_mouse_exited():
 func _draw():
 	var active = !Main.hovered_plants.empty() and Main.hovered_plants[0] == self
 	
-	draw_rect(Rect2(-82, 18, 164, 16), Color.white if active else color, false, 4)
-	draw_rect(Rect2(-80, 20, 160 * health, 12), color)
+	draw_rect(Rect2(-82, 43, 164, 16), Color.white if active else color, false, 4)
+	draw_rect(Rect2(-80, 45, 160 * health, 12), color)

@@ -15,7 +15,7 @@ const MuzzleFlash = preload("res://scenes/MuzzleFlash.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	z_index = position.y
 
 
 
@@ -63,6 +63,7 @@ func _physics_process(delta):
 	if recoil > 0:
 		vel += recoil_dir * recoil
 	self.move_and_slide(vel)
+	z_index = position.y
 	
 	var mouse_position = get_global_mouse_position()
 	$Shotgun.look_at(mouse_position)

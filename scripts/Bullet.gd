@@ -5,11 +5,12 @@ export var distance = 1200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	z_index = position.y
 
 
 func _physics_process(delta):
 	move_local_x(speed * delta)
+	z_index = position.y
 	distance -= speed * delta
 	if distance < 0:
 		queue_free()
