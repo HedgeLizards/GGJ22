@@ -7,6 +7,7 @@ enum { IDLE, PLANTING, WATERING, HARVESTING }
 var action = IDLE
 var active_plant
 var animation = 0
+var color
 
 onready var viewport = get_viewport()
 onready var Main = get_parent()
@@ -50,17 +51,24 @@ func _input(event):
 			percent_visible = 0
 			
 			if Main.hovered_plants.empty():
+				action = PLANTING
+				color = Color.green
+				
 				$Tween.interpolate_property(self, 'animation', 0, 1, 2)
 				$Tween.start()
-				
-				action = PLANTING
-			elif Main.hovered_plants[0].stage == 2:
-				action = HARVESTING
-			else:
+			elif Main.hovered_plants[0].stage < 2:
 				action = WATERING
 				
 				active_plant = Main.hovered_plants[0]
 				active_plant.watered = true
+			else:
+				action = HARVESTING
+				color = Color.yellow
+				
+				active_plant = Main.hovered_plants[0]
+				
+				$Tween.interpolate_property(self, 'animation', 0, 1, 2)
+				$Tween.start()
 		else:
 			release_action()
 
@@ -83,22 +91,28 @@ func _on_Tween_tween_step(object, key, elapsed, value):
 	update()
 
 func _on_Tween_tween_completed(object, key):
-	match action:
-		WATERING:
-			active_plant.watered = false
-		PLANTING:
-			update_position_and_visibility()
-			update()
-			
-			action = IDLE
-			
-			var new_plant = Plant.instance()
-			
-			new_plant.position = rect_position + Vector2(rect_size.x / 2, rect_size.y + 10)
-			
-			Main.add_child(new_plant)
+	if action == WATERING:
+		active_plant.watered = false
+	else:
+		match action:
+			PLANTING:
+				var new_plant = Plant.instance()
+				
+				new_plant.position = rect_position + Vector2(rect_size.x / 2, rect_size.y + 10)
+				
+				Main.add_child(new_plant)
+			HARVESTING:
+				active_plant._on_Area2D_mouse_exited()
+				active_plant.queue_free()
+				
+				Main.plants_harvested += 1
+		
+		action = IDLE
+		
+		update_position_and_visibility()
+		update()
 
 func _draw():
-	if action == PLANTING:
-		draw_rect(Rect2(rect_size.x / 2 - 82, rect_size.y - 12, 164, 10), Color.green, false, 4)
-		draw_rect(Rect2(rect_size.x / 2 - 80, rect_size.y - 10, 160 * animation, 6), Color.green)
+	if action == PLANTING || action == HARVESTING:
+		draw_rect(Rect2(rect_size.x / 2 - 82, rect_size.y - 12, 164, 10), color, false, 4)
+		draw_rect(Rect2(rect_size.x / 2 - 80, rect_size.y - 10, 160 * animation, 6), color)

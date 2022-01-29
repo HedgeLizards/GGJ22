@@ -16,7 +16,6 @@ func _ready():
 
 func _on_DayEnd_timeout():
 	set_process(false)
-	
 	update()
 	
 	color = Color.red
@@ -47,7 +46,6 @@ func _process(delta):
 		
 		if health <= 0:
 			_on_Area2D_mouse_exited()
-			
 			queue_free()
 	
 	update()
