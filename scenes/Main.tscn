@@ -19,6 +19,7 @@
 script = ExtResource( 5 )
 
 [node name="Environment" type="Node2D" parent="." groups=["dual"]]
+scale = Vector2( 0.75, 0.75 )
 z_index = -10
 script = ExtResource( 10 )
 
@@ -82,21 +83,21 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Tooltip"]
 
 [node name="LeftEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0, 1224 )
-scale = Vector2( 1, 102.4 )
+position = Vector2( 0, 918 )
+scale = Vector2( 1, 76.8 )
 
 [node name="RightEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2732, 1224 )
-scale = Vector2( 1, 102.4 )
+position = Vector2( 2049, 918 )
+scale = Vector2( 1, 76.8 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1366, 200 )
-scale = Vector2( 136.6, 1 )
+position = Vector2( 1024.5, 150 )
+scale = Vector2( 102.45, 1 )
 collision_layer = 7
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1366, 2248 )
-scale = Vector2( 136.6, 1 )
+position = Vector2( 1024.5, 1686 )
+scale = Vector2( 102.45, 1 )
 
 [node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
 position = Vector2( 450, 385 )
@@ -120,6 +121,7 @@ autostart = true
 
 [node name="DayMusic" type="AudioStreamPlayer" parent="DayNight"]
 stream = ExtResource( 14 )
+volume_db = -10.0
 
 [node name="NightMusic" type="AudioStreamPlayer" parent="DayNight"]
 stream = ExtResource( 13 )
