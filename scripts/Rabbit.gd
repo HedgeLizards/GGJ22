@@ -49,12 +49,12 @@ func move_peace():
 	status = Status.MOVE
 	direction = Vector2(1, 0).rotated(randf() * 2 * PI)
 	avoid_edge()
-	$RethinkTimer.start(0.3)
+	$RethinkTimer.start(0.25)
 
 func idle_evil():
 	status = Status.IDLE
 	direction = Vector2(0, 0)
-	$RethinkTimer.start(0.3)
+	$RethinkTimer.start(0.25)
 
 func move_evil():
 	status = Status.MOVE
