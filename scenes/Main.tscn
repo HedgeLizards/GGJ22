@@ -139,7 +139,7 @@ position = Vector2( 2049, 1470.75 )
 scale = Vector2( 1, 76.8 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1024.5, 702.75 )
+position = Vector2( 1024.5, 690 )
 scale = Vector2( 102.45, 1 )
 collision_layer = 3
 
