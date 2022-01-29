@@ -6,13 +6,23 @@ var time = 0
 
 var day = true
 var initialized = false
+var nbeats = 0
 
+#var startspeed = 2
+#var endspeed = 5
 
 func _process(delta):
 	if not initialized:
 		turn_day()
 		initialized = true
 	time += delta
+	if not day:
+		var length = $NightMusic.stream.get_length()
+		#var n = $NightMusic.get_playback_position() / length + startspeed
+		if nbeats < $NightMusic.get_playback_position() * 2:
+			get_tree().call_group("onbeat", "onbeat")
+			nbeats += 1
+			
 
 func is_day():
 	return day
@@ -28,6 +38,7 @@ func turn_night():
 	get_tree().call_group("dual", "nightstart")
 	get_tree().call_group("dual", "daychange", true)
 	$NightMusic.play(0.0)
+	nbeats = 0
 	$BeatTimer.start()
 	$DayMusic.stop()
 	$DayOutro.play(0.0)
@@ -63,4 +74,5 @@ func _on_DayMusic_finished():
 
 
 func _on_BeatTimer_timeout():
-	get_tree().call_group("onbeat", "onbeat")
+	#get_tree().call_group("onbeat", "onbeat")
+	pass
