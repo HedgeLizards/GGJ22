@@ -100,7 +100,8 @@ z_index = 20
 texture = ExtResource( 17 )
 centered = false
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Environment/Night"]
+[node name="Darkness" type="CanvasModulate" parent="Environment/Night"]
+visible = false
 material = SubResource( 2 )
 scale = Vector2( 1.33333, 1.33333 )
 color = Color( 0, 0, 0, 1 )

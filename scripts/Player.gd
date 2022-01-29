@@ -22,10 +22,11 @@ func _ready():
 
 
 func shoot():
-	var bullet = Bullet.instance()
-	
-	bullet.global_transform = $Shotgun.global_transform
-	get_node("/root").add_child(bullet)
+	for i in range(-1, 2):
+		var bullet = Bullet.instance()
+		bullet.global_transform = $Shotgun/Muzzle.global_transform
+		bullet.rotation += i * PI * 0.04
+		get_node("/root").add_child(bullet)
 
 func _physics_process(delta):
 	var is_night = get_node("/root/Main/DayNight").is_night()
