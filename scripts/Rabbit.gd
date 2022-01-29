@@ -66,6 +66,10 @@ func _physics_process(delta):
 	
 	if evil:
 		direction = get_node("/root/Main/Player").position - position
+		for plant in get_tree().get_nodes_in_group("plants"):
+			var plant_direction = plant.position - position
+			if plant_direction.length_squared() < direction.length_squared():
+				direction = plant_direction
 		move_and_slide(direction.normalized() * speed)
 		
 
