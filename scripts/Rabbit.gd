@@ -103,13 +103,19 @@ func die():
 func _physics_process(delta):
 	
 	if status == Status.MOVE:
+		
+		if direction.x > 0:
+			$Body.scale.x = -1
+		elif direction.x < 0:
+			$Body.scale.x = 1
 		move_and_slide(direction.normalized() * speed)
+		
 		
 
 func daychange(is_night):
 	evil = is_night
-	$DaySprite.visible = not is_night
-	$NightSprite.visible = is_night
+	$Body/DaySprite.visible = not is_night
+	$Body/NightSprite.visible = is_night
 	$DayShape.disabled = is_night
 	$NightShape.disabled = not is_night
 	if not is_night:
