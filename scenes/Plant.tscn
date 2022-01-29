@@ -27,6 +27,8 @@ texture = ExtResource( 1 )
 visible = false
 texture = ExtResource( 3 )
 mode = 2
+range_z_min = -4096
+range_z_max = 4096
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

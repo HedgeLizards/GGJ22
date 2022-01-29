@@ -56,6 +56,7 @@ scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 10 )
 
 [node name="Day" type="Node2D" parent="Environment"]
+z_index = -4096
 
 [node name="Hills" type="Sprite" parent="Environment/Day"]
 position = Vector2( 0, 300 )
@@ -70,11 +71,13 @@ centered = false
 [node name="Border" type="Sprite" parent="Environment/Day"]
 position = Vector2( 0, 653 )
 z_index = 4096
+z_as_relative = false
 texture = ExtResource( 16 )
 centered = false
 
 [node name="Night" type="Node2D" parent="Environment"]
 visible = false
+z_index = -4096
 
 [node name="Hills" type="Sprite" parent="Environment/Night"]
 material = SubResource( 3 )
@@ -90,6 +93,7 @@ centered = false
 [node name="Border" type="Sprite" parent="Environment/Night"]
 position = Vector2( 0, 653 )
 z_index = 4096
+z_as_relative = false
 texture = ExtResource( 17 )
 centered = false
 
