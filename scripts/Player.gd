@@ -7,7 +7,7 @@ export var max_cooldown = 0.5
 var cooldown = 0
 var recoil_dir = Vector2(0, 0)
 var recoil = 0
-
+var waggle_time = 0
 
 const Bullet = preload("res://scenes/Bullet.tscn")
 const MuzzleFlash = preload("res://scenes/MuzzleFlash.tscn")
@@ -43,6 +43,11 @@ func _physics_process(delta):
 		int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")),
 		int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	)
+	if inp.length():
+		waggle_time += delta
+	else:
+		waggle_time = 0
+	$Body.rotation = sin(waggle_time * (10 + int(is_night) * 10))/(10 - int(is_night) * 5)
 	
 	recoil -= delta
 	

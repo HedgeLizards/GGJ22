@@ -96,6 +96,7 @@ texture = ExtResource( 17 )
 centered = false
 
 [node name="Darkness" type="CanvasModulate" parent="Environment/Night"]
+visible = false
 light_mask = 0
 material = SubResource( 2 )
 scale = Vector2( 1.33333, 1.33333 )
