@@ -1,6 +1,6 @@
 extends Area2D
 
-export var speed = 4000
+export var speed = 8000
 export var distance = 1200
 
 # Called when the node enters the scene tree for the first time.
@@ -22,4 +22,7 @@ func _on_Bullet_body_entered(body):
 		body.health -= 5
 		if body.health <= 0:
 			body.die()
+	queue_free()
+
+func daychange(is_night):
 	queue_free()
