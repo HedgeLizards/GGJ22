@@ -2,7 +2,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Obstacle" type="StaticBody2D"]
+[node name="Edge" type="StaticBody2D"]
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -6,7 +6,11 @@ enum Status {IDLE, MOVE}
 var status = Status.IDLE
 var direction = Vector2(0, 0)
 var speed = 200
-var evil = false;
+var evil = false
+var health = 10
+
+
+const DeadBunny = preload("res://scenes/DeadBunny.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +24,16 @@ func _on_RethinkTimer_timeout():
 		status = Status.IDLE
 	$RethinkTimer.wait_time = 0.5+randf()
 
+
+func is_enemy():
+	return true
+
+
+func die():
+	var corpse = DeadBunny.instance()
+	corpse.global_transform = global_transform
+	get_parent().add_child(corpse)
+	queue_free()
 
 
 
@@ -45,6 +59,7 @@ func turn_evil():
 
 func turn_peaceful():
 	evil = false
+	health = 10
 	$Day.visible = true
 	$Night.visible = false
 

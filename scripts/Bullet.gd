@@ -17,4 +17,8 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
+	if body.has_method("is_enemy") and body.is_enemy():
+		body.health -= 5
+		if body.health <= 0:
+			body.die()
 	queue_free()
