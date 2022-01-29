@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/Untitled_Artwork 2.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
@@ -15,12 +15,16 @@
 [ext_resource path="res://assets/MUS_Night.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/MUS_Day.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/FiraSans-ExtraBold.otf" type="DynamicFontData" id=15]
+[ext_resource path="res://assets/light.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 15 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -93,6 +97,29 @@ texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment/Night"]
+material = SubResource( 2 )
+scale = Vector2( 1.33333, 1.33333 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="DebugLight" type="Light2D" parent="Environment/Night"]
+visible = false
+position = Vector2( 976, 1093.33 )
+scale = Vector2( 1.33333, 1.33333 )
+texture = ExtResource( 16 )
+
+[node name="Tooltip" type="Label" parent="." groups=["dual"]]
+visible = false
+text = "Click and hold to plant a seed"
+align = 1
+valign = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Tooltip"]
 
 [node name="LeftEdge" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 918 )
