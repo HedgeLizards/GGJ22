@@ -15,7 +15,7 @@ func _ready():
 	change_zoom()
 
 func change_zoom():
-	var ratio = Vector2(2049, 1686) / OS.window_size
+	var ratio = Vector2(2049, 2238.75) / OS.window_size
 	
 	zoom = min(min(ratio.x, ratio.y), 1.5) * Vector2.ONE
 
