@@ -120,6 +120,7 @@ autostart = true
 
 [node name="DayMusic" type="AudioStreamPlayer" parent="DayNight"]
 stream = ExtResource( 14 )
+volume_db = -10.0
 
 [node name="NightMusic" type="AudioStreamPlayer" parent="DayNight"]
 stream = ExtResource( 13 )
