@@ -6,7 +6,7 @@ var watered = false
 var color = Color.blue
 var colliding_bunnies = 0
 
-onready var Main = get_parent()
+onready var Main = get_node("/root/Main")
 onready var Tooltip = Main.get_node('CanvasLayer/Tooltip')
 
 func daychange(is_night):
@@ -60,7 +60,7 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	var active = !Main.hovered_plants.empty() && Main.hovered_plants[0] == self
+	var active = !Main.hovered_plants.empty() and Main.hovered_plants[0] == self
 	
 	draw_rect(Rect2(-82, 12, 164, 10), Color.white if active else color, false, 4)
 	draw_rect(Rect2(-80, 14, 160 * health, 6), color)

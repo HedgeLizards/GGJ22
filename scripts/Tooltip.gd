@@ -12,7 +12,7 @@ var camera_offset
 var mouse_position_global
 var mouse_position
 
-onready var Main = get_parent().get_parent()
+onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node('Player')
 onready var Camer = Player.get_node('Camera2D')
 

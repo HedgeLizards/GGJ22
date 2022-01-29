@@ -27,6 +27,7 @@ func shoot():
 		bullet.global_transform = $Shotgun/Muzzle.global_transform
 		bullet.rotation += i * PI * 0.04
 		get_node("/root").add_child(bullet)
+	$Shotgun/Bang.play()
 
 func _physics_process(delta):
 	var is_night = get_node("/root/Main/DayNight").is_night()
