@@ -11,5 +11,5 @@ dest_files=[ "res://.import/MUS_Night.ogg-b80d86d80008cdaf25d9c5e6110c9b4c.oggst
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
