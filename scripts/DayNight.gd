@@ -30,7 +30,8 @@ func turn_night():
 	day = false
 	get_tree().call_group("dual", "nightstart")
 	get_tree().call_group("dual", "daychange", true)
-	$NightMusic.play(0.0)
+	$NightMusic.play(00.0)
+	$BeatTimer.start()
 
 func _input(event):
 	if Input.is_action_just_pressed("skip"):
@@ -47,9 +48,14 @@ func turn_day():
 	get_tree().call_group("dual", "daystart")
 	get_tree().call_group("dual", "daychange", false)
 	$NightMusic.stop()
+	$BeatTimer.stop()
 
 func _on_DayEnd_timeout():
 	turn_night()
 
 func _on_NightMusic_finished():
 	turn_day()
+
+
+func _on_BeatTimer_timeout():
+	get_tree().call_group("onbeat", "onbeat")

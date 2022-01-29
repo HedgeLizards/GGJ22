@@ -10,7 +10,7 @@ radius = 15.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 30.0
 
-[node name="Rabbit" type="KinematicBody2D" groups=["bunnies", "dual"]]
+[node name="Rabbit" type="KinematicBody2D" groups=["bunnies", "dual", "onbeat"]]
 z_index = -1
 collision_layer = 6
 collision_mask = 2

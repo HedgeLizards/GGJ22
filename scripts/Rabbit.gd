@@ -24,6 +24,10 @@ func _on_RethinkTimer_timeout():
 		status = Status.IDLE
 	rethink()
 
+func onbeat():
+	status = Status.MOVE
+	rethink()
+
 func rethink():
 	if evil:
 		if status == Status.MOVE:
@@ -54,7 +58,8 @@ func move_peace():
 func idle_evil():
 	status = Status.IDLE
 	direction = Vector2(0, 0)
-	$RethinkTimer.start(0.25)
+	#$RethinkTimer.start(0.25)
+	$RethinkTimer.stop()
 
 func move_evil():
 	status = Status.MOVE
