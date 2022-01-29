@@ -119,6 +119,7 @@ autostart = true
 
 [node name="NightMusic" type="AudioStreamPlayer" parent="DayNight"]
 stream = ExtResource( 13 )
+volume_db = -10.0
 
 [node name="Spawner" type="Timer" parent="."]
 autostart = true
