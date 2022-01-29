@@ -19,11 +19,13 @@ func daychange(is_night):
 			$Sprite.texture = preload('res://assets/night_plant_grown.png')
 			
 		$Area2D.input_pickable = false
+		$Light.visible = true
 		
 		color = Color.red
-	else:
+	elif !new:
 		$Sprite.texture = preload('res://assets/day_plant_grown.png')
 		$Area2D.input_pickable = true
+		$Light.visible = false
 		
 		color = Color.blue
 

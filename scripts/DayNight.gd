@@ -42,6 +42,7 @@ func turn_night():
 	$BeatTimer.start()
 	$DayMusic.stop()
 	$DayOutro.play(0.0)
+	VisualServer.set_default_clear_color(Color.black)
 
 func _input(event):
 	if event.is_action_pressed("skip"):
@@ -62,6 +63,7 @@ func turn_day():
 	$DayMusic.play(0.0)
 	if initialized:
 		$NightOutro.play(0.0)
+	VisualServer.set_default_clear_color(Color(155, 246, 255, 255) / 255.0)
 
 func _on_DayEnd_timeout():
 	pass

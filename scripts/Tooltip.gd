@@ -44,7 +44,7 @@ func update_position_and_visibility():
 	mouse_position_global = get_global_mouse_position()
 	mouse_position = (mouse_position_global - camera_offset) * Camer.zoom
 	
-	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 200 && Main.hovered_plants.empty()):
+	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 750 && Main.hovered_plants.empty()):
 		rect_position = mouse_position_global - Vector2(rect_size.x / 2, rect_size.y + 10)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
