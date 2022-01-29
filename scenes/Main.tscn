@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://scenes/Rabbit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Edge.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=5]
+[ext_resource path="res://scripts/Spawner.gd" type="Script" id=6]
 [ext_resource path="res://scripts/DayNight.gd" type="Script" id=7]
 [ext_resource path="res://assets/day_background.png" type="Texture" id=8]
 [ext_resource path="res://assets/night_background.png" type="Texture" id=9]
@@ -85,15 +85,6 @@ __meta__ = {
 [node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
 position = Vector2( 450, 385 )
 
-[node name="Rabbit" parent="." instance=ExtResource( 1 )]
-position = Vector2( 284, 400 )
-
-[node name="Rabbit2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 505, 503 )
-
-[node name="Rabbit3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 683, 442 )
-
 [node name="LeftEdge" parent="." instance=ExtResource( 4 )]
 position = Vector2( -6, 493 )
 scale = Vector2( 1, 50 )
@@ -105,6 +96,7 @@ scale = Vector2( 1, 50 )
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
 position = Vector2( 667, 200 )
 scale = Vector2( 70, 1 )
+collision_layer = 7
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
 position = Vector2( 681, 982 )
@@ -122,9 +114,14 @@ autostart = true
 wait_time = 5.0
 one_shot = true
 
+[node name="Spawner" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 6 )
+
 [connection signal="tween_completed" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_step"]
 [connection signal="timeout" from="DayNight/DayEnd" to="Tooltip" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/DayEnd" to="DayNight" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="Tooltip" method="_on_NightEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="DayNight" method="_on_NightEnd_timeout"]
+[connection signal="timeout" from="Spawner" to="Spawner" method="_on_Spawner_timeout"]
