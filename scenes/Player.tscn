@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/night1.png" type="Texture" id=2]
 [ext_resource path="res://assets/day1.png" type="Texture" id=3]
 [ext_resource path="res://assets/gun.png" type="Texture" id=4]
 [ext_resource path="res://assets/SFX_Shot.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/gun_flash.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 45 )
@@ -30,11 +31,10 @@ position = Vector2( 0, -43 )
 shape = SubResource( 1 )
 
 [node name="Shotgun" type="Node2D" parent="."]
-position = Vector2( 0, -60 )
+position = Vector2( 0, -45 )
 
 [node name="Sprite" type="Sprite" parent="Shotgun"]
-position = Vector2( 20, 0 )
-scale = Vector2( 1.5, 0.2 )
+position = Vector2( 88, -8 )
 texture = ExtResource( 4 )
 
 [node name="Muzzle" type="Node2D" parent="Shotgun"]
@@ -42,3 +42,14 @@ position = Vector2( 70, 0 )
 
 [node name="Bang" type="AudioStreamPlayer" parent="Shotgun"]
 stream = ExtResource( 5 )
+
+[node name="FireSprite" type="Sprite" parent="Shotgun"]
+visible = false
+position = Vector2( 88, -8 )
+texture = ExtResource( 6 )
+
+[node name="FireTimer" type="Timer" parent="Shotgun"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Shotgun/FireTimer" to="." method="_on_FireTimer_timeout"]

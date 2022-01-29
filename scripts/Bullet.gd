@@ -1,6 +1,6 @@
 extends Area2D
 
-export var speed = 4000
+export var speed = 8000
 export var distance = 1200
 
 # Called when the node enters the scene tree for the first time.

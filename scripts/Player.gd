@@ -36,6 +36,9 @@ func shoot():
 	get_node("/root").add_child(flash)
 	recoil_dir = Vector2(-5000, 0).rotated($Shotgun/Muzzle.global_rotation)
 	recoil = 0.2
+	$Shotgun/Sprite.visible = false
+	$Shotgun/FireSprite.visible = true
+	$Shotgun/FireTimer.start()
 
 func _physics_process(delta):
 	var is_night = get_node("/root/Main/DayNight").is_night()
@@ -75,3 +78,8 @@ func daychange(is_night):
 	$Shotgun.visible = is_night
 
 
+
+
+func _on_FireTimer_timeout():
+	$Shotgun/Sprite.visible = true
+	$Shotgun/FireSprite.visible = false
