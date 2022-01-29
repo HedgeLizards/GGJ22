@@ -6,6 +6,7 @@ enum Status {IDLE, MOVE}
 var status = Status.IDLE
 var direction = Vector2(0, 0)
 var speed = 250
+var night_speed = 750
 var evil = false
 var health = 10
 var edge_distance = 100
@@ -68,7 +69,7 @@ func move_evil():
 		var plant_direction = plant.position - position
 		if plant_direction.length_squared() < direction.length_squared():
 			direction = plant_direction
-	$RethinkTimer.start(0.2)
+	$RethinkTimer.start(0.25)
 
 
 
@@ -108,7 +109,12 @@ func _physics_process(delta):
 			$Body.scale.x = -1
 		elif direction.x < 0:
 			$Body.scale.x = 1
-		move_and_slide(direction.normalized() * speed)
+		var vel = direction.normalized()
+		if evil:
+			vel *= night_speed
+		else:
+			vel *= speed
+		move_and_slide(vel)
 		
 		
 

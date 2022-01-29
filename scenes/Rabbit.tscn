@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/day_bunny1.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 15.0
+radius = 35.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 30.0
+radius = 90.0
 
 [node name="Rabbit" type="KinematicBody2D" groups=["bunnies", "dual", "onbeat"]]
 z_index = -1
@@ -28,12 +28,12 @@ wait_time = 0.1
 autostart = true
 
 [node name="Body" type="Node2D" parent="."]
+position = Vector2( 0, -25 )
 
 [node name="DaySprite" type="Sprite" parent="Body"]
 texture = ExtResource( 3 )
 
 [node name="NightSprite" type="Sprite" parent="Body"]
-visible = false
 texture = ExtResource( 1 )
 
 [connection signal="timeout" from="RethinkTimer" to="." method="_on_RethinkTimer_timeout"]

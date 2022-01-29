@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 
-export var speed = 250
+export var day_speed = 250
+export var night_speed = 750
 export var max_cooldown = 0.5
 var cooldown = 0
 
@@ -23,29 +24,34 @@ func _ready():
 func shoot():
 	var bullet = Bullet.instance()
 	
-	bullet.global_transform = $Body.global_transform
+	bullet.global_transform = $Shotgun.global_transform
 	get_node("/root").add_child(bullet)
 
 func _physics_process(delta):
+	var is_night = get_node("/root/Main/DayNight").is_night()
 	var inp = Vector2(
 		int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")),
 		int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	)
 	
-	var vel = inp.normalized() * speed
+	var vel = inp.normalized()
+	if is_night:
+		vel *= night_speed
+	else:
+		vel *= day_speed
 	self.move_and_slide(vel)
 	
 	var mouse_position = get_global_mouse_position()
-	$Body.look_at(mouse_position)
+	$Shotgun.look_at(mouse_position)
 	
-	if Input.is_action_pressed("shoot") and get_node("/root/Main/DayNight").is_night() and cooldown <= 0:
+	if Input.is_action_pressed("shoot") and is_night and cooldown <= 0:
 		shoot()
 		cooldown = max_cooldown
 	cooldown -= delta
 
 
 func daychange(is_night):
-	$Day.visible = not is_night
-	$Night.visible = is_night
+	$Body/Day.visible = not is_night
+	$Body/Night.visible = is_night
 
 
