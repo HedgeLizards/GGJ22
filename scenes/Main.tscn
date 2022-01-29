@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/Untitled_Artwork 2.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://assets/MUS_Night.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/MUS_Day.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/FiraSans-ExtraBold.otf" type="DynamicFontData" id=15]
+[ext_resource path="res://assets/Day_border.png" type="Texture" id=16]
+[ext_resource path="res://assets/Night_border.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -44,10 +46,10 @@ __meta__ = {
 
 [node name="Environment" type="Node2D" parent="." groups=["dual"]]
 scale = Vector2( 0.75, 0.75 )
-z_index = -10
 script = ExtResource( 10 )
 
 [node name="Day" type="Node2D" parent="Environment"]
+z_index = -10
 
 [node name="Sky" type="TextureRect" parent="Environment/Day"]
 margin_right = 2732.0
@@ -60,18 +62,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Environment/Day"]
-margin_top = 200.0
-margin_right = 2732.0
-margin_bottom = 2248.0
-mouse_filter = 2
+[node name="Garden" type="Sprite" parent="Environment/Day"]
+position = Vector2( 0, 937 )
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+centered = false
+
+[node name="Border" type="Sprite" parent="Environment/Day"]
+z_index = 20
+texture = ExtResource( 16 )
+centered = false
 
 [node name="Night" type="Node2D" parent="Environment"]
 visible = false
+z_index = -10
 
 [node name="Sky" type="TextureRect" parent="Environment/Night"]
 margin_right = 2732.0
@@ -84,35 +87,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Environment/Night"]
-margin_top = 200.0
-margin_right = 2732.0
-margin_bottom = 2248.0
-mouse_filter = 2
+[node name="Garden" type="Sprite" parent="Environment/Night"]
+position = Vector2( 0, 937 )
 texture = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+centered = false
+
+[node name="Border" type="Sprite" parent="Environment/Night"]
+z_index = 20
+texture = ExtResource( 17 )
+centered = false
 
 [node name="LeftEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0, 918 )
+position = Vector2( 0, 1470.75 )
 scale = Vector2( 1, 76.8 )
 
 [node name="RightEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2049, 918 )
+position = Vector2( 2049, 1470.75 )
 scale = Vector2( 1, 76.8 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1024.5, 150 )
+position = Vector2( 1024.5, 702.75 )
 scale = Vector2( 102.45, 1 )
 collision_layer = 7
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1024.5, 1686 )
+position = Vector2( 1024.5, 2238.75 )
 scale = Vector2( 102.45, 1 )
 
 [node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
-position = Vector2( 450, 385 )
+position = Vector2( 1024.5, 1000 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
