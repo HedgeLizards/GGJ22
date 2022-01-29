@@ -38,11 +38,11 @@ func die():
 
 
 func _physics_process(delta):
-	var is_night = get_node("/root/Main/DayNight").is_night()
-	if not evil and is_night:
-		turn_evil()
-	elif evil and not is_night:
-		turn_peaceful()
+	#var is_night = get_node("/root/Main/DayNight").is_night()
+	#if not evil and is_night:
+		#turn_evil()
+	#elif evil and not is_night:
+		#turn_peaceful()
 	
 	if not evil and status == Status.MOVE:
 		move_and_slide(direction * speed)
@@ -52,14 +52,13 @@ func _physics_process(delta):
 		move_and_slide(direction * speed)
 		
 
-func turn_evil():
-	evil = true
-	$Day.visible = false
-	$Night.visible = true
-
-func turn_peaceful():
-	evil = false
-	health = 10
-	$Day.visible = true
-	$Night.visible = false
+func daychange(is_night):
+	evil = is_night
+	$DaySprite.visible = not is_night
+	$NightSprite.visible = is_night
+	$DayShape.disabled = is_night
+	$NightShape.disabled = not is_night
+	if not is_night:
+		health = 10
+	
 

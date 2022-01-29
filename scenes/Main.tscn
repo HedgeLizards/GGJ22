@@ -15,7 +15,7 @@
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="Environment" type="Node2D" parent="." groups=["dual"]]
 z_index = -10
 script = ExtResource( 10 )
 
@@ -81,7 +81,7 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Tooltip"]
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
 position = Vector2( 450, 385 )
 
 [node name="Rabbit" parent="." instance=ExtResource( 1 )]
@@ -123,11 +123,7 @@ one_shot = true
 
 [connection signal="tween_completed" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_step"]
-[connection signal="timeout" from="DayNight/DayEnd" to="Environment" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/DayEnd" to="Tooltip" method="_on_DayEnd_timeout"]
-[connection signal="timeout" from="DayNight/DayEnd" to="Player" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/DayEnd" to="DayNight" method="_on_DayEnd_timeout"]
-[connection signal="timeout" from="DayNight/NightEnd" to="Environment" method="_on_NightEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="Tooltip" method="_on_NightEnd_timeout"]
-[connection signal="timeout" from="DayNight/NightEnd" to="Player" method="_on_NightEnd_timeout"]
 [connection signal="timeout" from="DayNight/NightEnd" to="DayNight" method="_on_NightEnd_timeout"]

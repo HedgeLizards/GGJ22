@@ -28,8 +28,12 @@ func is_night():
 func _on_DayEnd_timeout():
 	day = false
 	$NightEnd.start()
+	get_tree().call_group("dual", "nightstart")
+	get_tree().call_group("dual", "daychange", true)
 
 
 func _on_NightEnd_timeout():
 	day = true
 	$DayEnd.start()
+	get_tree().call_group("dual", "daystart")
+	get_tree().call_group("dual", "daychange", false)

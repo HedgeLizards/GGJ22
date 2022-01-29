@@ -36,12 +36,8 @@ func _physics_process(delta):
 	$Body.look_at(mouse_position)
 
 
-func _on_DayEnd_timeout():
-	$Day.visible = false
-	$Night.visible = true
+func daychange(is_night):
+	$Day.visible = not is_night
+	$Night.visible = is_night
 
-
-func _on_NightEnd_timeout():
-	$Day.visible = true
-	$Night.visible = false
 
