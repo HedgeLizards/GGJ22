@@ -5,17 +5,14 @@ extends Node
 var time = 0
 
 var day = true
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var initialized = false
 
 
 func _process(delta):
+	if not initialized:
+		turn_day()
+		initialized = true
 	time += delta
-
-
 
 func is_day():
 	return day
@@ -30,8 +27,9 @@ func turn_night():
 	day = false
 	get_tree().call_group("dual", "nightstart")
 	get_tree().call_group("dual", "daychange", true)
-	$NightMusic.play(00.0)
+	$NightMusic.play(0.0)
 	$BeatTimer.start()
+	$DayMusic.stop()
 
 func _input(event):
 	if Input.is_action_just_pressed("skip"):
@@ -41,7 +39,7 @@ func _input(event):
 			turn_day()
 
 func turn_day():
-	if day:
+	if day and initialized:
 		return
 	day = true
 	$DayEnd.start()
@@ -49,12 +47,16 @@ func turn_day():
 	get_tree().call_group("dual", "daychange", false)
 	$NightMusic.stop()
 	$BeatTimer.stop()
+	$DayMusic.play(0.0)
 
 func _on_DayEnd_timeout():
-	turn_night()
+	pass
 
 func _on_NightMusic_finished():
 	turn_day()
+	
+func _on_DayMusic_finished():
+	turn_night()
 
 
 func _on_BeatTimer_timeout():

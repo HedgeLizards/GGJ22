@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MUS_Day.ogg-2845a2ef6cbab768988fe95a022adf12.oggstr"
+
+[deps]
+
+source_file="res://assets/MUS_Day.ogg"
+dest_files=[ "res://.import/MUS_Day.ogg-2845a2ef6cbab768988fe95a022adf12.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
