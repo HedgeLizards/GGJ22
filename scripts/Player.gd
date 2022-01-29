@@ -5,6 +5,8 @@ export var day_speed = 250
 export var night_speed = 750
 export var max_cooldown = 0.5
 var cooldown = 0
+var recoil_dir = Vector2(0, 0)
+var recoil = 0
 
 
 const Bullet = preload("res://scenes/Bullet.tscn")
@@ -32,6 +34,8 @@ func shoot():
 	var flash = MuzzleFlash.instance()
 	flash.global_transform = $Shotgun/Muzzle.global_transform
 	get_node("/root").add_child(flash)
+	recoil_dir = Vector2(-5000, 0).rotated($Shotgun/Muzzle.global_rotation)
+	recoil = 0.2
 
 func _physics_process(delta):
 	var is_night = get_node("/root/Main/DayNight").is_night()
@@ -40,11 +44,15 @@ func _physics_process(delta):
 		int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	)
 	
+	recoil -= delta
+	
 	var vel = inp.normalized()
 	if is_night:
 		vel *= night_speed
 	else:
 		vel *= day_speed
+	if recoil > 0:
+		vel += recoil_dir * recoil
 	self.move_and_slide(vel)
 	
 	var mouse_position = get_global_mouse_position()
