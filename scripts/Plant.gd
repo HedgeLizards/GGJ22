@@ -12,24 +12,24 @@ onready var Tooltip = Main.get_node('Tooltip')
 func _ready():
 	var DayNight = Main.get_node('DayNight')
 	
-	DayNight.get_node('DayEnd').connect('timeout', self, '_on_DayEnd_timeout')
-	DayNight.get_node('NightEnd').connect('timeout', self, '_on_NightEnd_timeout')
+	#DayNight.get_node('DayEnd').connect('timeout', self, '_on_DayEnd_timeout')
+	#DayNight.get_node('NightEnd').connect('timeout', self, '_on_NightEnd_timeout')
 
-func _on_DayEnd_timeout():
-	color = Color.red
-	
-	$Area2D.input_pickable = false
+func daychange(is_night):
+	if is_night:
+		color = Color.red
+		$Area2D.input_pickable = false
 
-func _on_NightEnd_timeout():
-	color = Color.blue
-	
-	$Area2D.input_pickable = true
-	
-	if (stage < 2):
-		stage += 1
+	else:
+		color = Color.blue
 		
-		$Sprite.scale.y = [1, 1.5, 2][stage]
-		$Sprite.position.y = -$Sprite.scale.y * $Sprite.texture.get_height() / 2
+		$Area2D.input_pickable = true
+		
+		if (stage < 2):
+			stage += 1
+			
+			$Sprite.scale.y = [1, 1.5, 2][stage]
+			$Sprite.position.y = -$Sprite.scale.y * $Sprite.texture.get_height() / 2
 
 func _process(delta):
 	if $Area2D.input_pickable:
