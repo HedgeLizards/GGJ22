@@ -2,9 +2,12 @@ extends KinematicBody2D
 
 
 export var speed = 250
+export var max_cooldown = 0.5
+var cooldown = 0
 
 
 const Bullet = preload("res://scenes/Bullet.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +15,9 @@ func _ready():
 
 
 
-func _input(event):
-	if event.is_action_pressed("shoot") and get_node("/root/Main/DayNight").is_night():
-		shoot()
+#func _input(event):
+	#if event.is_action_pressed("shoot") and get_node("/root/Main/DayNight").is_night():
+		#shoot()
 
 
 func shoot():
@@ -34,6 +37,11 @@ func _physics_process(delta):
 	
 	var mouse_position = get_global_mouse_position()
 	$Body.look_at(mouse_position)
+	
+	if Input.is_action_pressed("shoot") and get_node("/root/Main/DayNight").is_night() and cooldown <= 0:
+		shoot()
+		cooldown = max_cooldown
+	cooldown -= delta
 
 
 func daychange(is_night):
