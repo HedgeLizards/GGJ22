@@ -23,15 +23,17 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 disabled = true
 
-[node name="DaySprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
-
-[node name="NightSprite" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 1 )
-
 [node name="RethinkTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="DaySprite" type="Sprite" parent="Body"]
+texture = ExtResource( 3 )
+
+[node name="NightSprite" type="Sprite" parent="Body"]
+visible = false
+texture = ExtResource( 1 )
 
 [connection signal="timeout" from="RethinkTimer" to="." method="_on_RethinkTimer_timeout"]
