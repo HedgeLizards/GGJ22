@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/granny_metal.png-3f375d2f2c9fb630abdfcdcc2067fba0.stex"
+path="res://.import/night_bunny1.png-9cb5006d2cabacf31999d4691e61040c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/granny_metal.png"
-dest_files=[ "res://.import/granny_metal.png-3f375d2f2c9fb630abdfcdcc2067fba0.stex" ]
+source_file="res://assets/night_bunny1.png"
+dest_files=[ "res://.import/night_bunny1.png-9cb5006d2cabacf31999d4691e61040c.stex" ]
 
 [params]
 
