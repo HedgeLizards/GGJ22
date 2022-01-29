@@ -34,7 +34,7 @@ func update_position_and_visibility():
 	var mouse_position = viewport.get_mouse_position()
 	
 	if mouse_position.distance_to(Player.position) < 200:
-		rect_position = mouse_position + Vector2(-rect_size.x / 2, 20)
+		rect_position = mouse_position - Vector2(rect_size.x / 2, rect_size.y + 10)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
 		
@@ -54,7 +54,7 @@ func _input(event):
 				$Tween.start()
 				
 				action = PLANTING
-			elif Main.hovered_plants[0].fullgrown:
+			elif Main.hovered_plants[0].stage == 2:
 				action = HARVESTING
 			else:
 				action = WATERING
@@ -94,7 +94,7 @@ func _on_Tween_tween_completed(object, key):
 			
 			var new_plant = Plant.instance()
 			
-			new_plant.position = rect_position - Vector2(-rect_size.x / 2, 20)
+			new_plant.position = rect_position + Vector2(rect_size.x / 2, rect_size.y + 10)
 			
 			Main.add_child(new_plant)
 

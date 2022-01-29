@@ -1,8 +1,9 @@
 extends Node2D
 
-var humidity = 1
+var stage = 0
+var health = 1
 var watered = false
-var fullgrown = false
+var color = Color.blue
 
 onready var Main = get_parent()
 onready var Tooltip = Main.get_node('Tooltip')
@@ -14,24 +15,37 @@ func _ready():
 	DayNight.get_node('NightEnd').connect('timeout', self, '_on_NightEnd_timeout')
 
 func _on_DayEnd_timeout():
+	set_process(false)
+	
 	update()
 	
-	set_process(false)
+	color = Color.red
 	
 	$Area2D.input_pickable = false
 
 func _on_NightEnd_timeout():
-	set_process(true)
+	if (stage < 2):
+		stage += 1
+		
+		$Sprite.scale.y = [1, 1.5, 2][stage]
+		$Sprite.position.y = -$Sprite.scale.y * $Sprite.texture.get_height() / 2
+	
+	if (stage < 2):
+		set_process(true)
+	else:
+		update()
+	
+	color = Color.blue
 	
 	$Area2D.input_pickable = true
 
 func _process(delta):
 	if watered:
-		humidity = min(humidity + delta / 2, 1)
+		health = min(health + delta / 2, 1)
 	else:
-		humidity -= delta / 20
+		health -= delta / 20
 		
-		if humidity <= 0:
+		if health <= 0:
 			_on_Area2D_mouse_exited()
 			
 			queue_free()
@@ -41,7 +55,7 @@ func _process(delta):
 func _on_Area2D_mouse_entered():
 	Main.hovered_plants.push_back(self)
 	
-	Tooltip.text = 'Click and hold to water the plant'
+	Tooltip.text = 'Click and hold to %s the plant' % ('water' if stage < 2 else 'harvest')
 
 func _on_Area2D_mouse_exited():
 	Main.hovered_plants.erase(self)
@@ -50,6 +64,6 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	if !Main.hovered_plants.empty() && Main.hovered_plants[0] == self && $Area2D.input_pickable:
-		draw_rect(Rect2(-82, -52, 164, 10), Color.blue, false, 4)
-		draw_rect(Rect2(-80, -50, 160 * humidity, 6), Color.blue)
+	if !$Area2D.input_pickable || (!Main.hovered_plants.empty() && Main.hovered_plants[0] == self):
+		draw_rect(Rect2(-82, 12, 164, 10), color, false, 4)
+		draw_rect(Rect2(-80, 14, 160 * health, 6), color)
