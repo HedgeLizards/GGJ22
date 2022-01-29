@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MUS_Night_StaticBPM_Outro.ogg-ccd313646a765683a7d4ef4c9cd74083.oggstr"
+
+[deps]
+
+source_file="res://assets/MUS_Night_StaticBPM_Outro.ogg"
+dest_files=[ "res://.import/MUS_Night_StaticBPM_Outro.ogg-ccd313646a765683a7d4ef4c9cd74083.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

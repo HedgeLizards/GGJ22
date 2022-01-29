@@ -41,6 +41,7 @@ func turn_night():
 	nbeats = 0
 	$BeatTimer.start()
 	$DayMusic.stop()
+	$DayOutro.play(0.0)
 
 func _input(event):
 	if event.is_action_pressed("skip"):
@@ -59,6 +60,8 @@ func turn_day():
 	$NightMusic.stop()
 	$BeatTimer.stop()
 	$DayMusic.play(0.0)
+	if initialized:
+		$NightOutro.play(0.0)
 
 func _on_DayEnd_timeout():
 	pass
