@@ -19,11 +19,13 @@ func daychange(is_night):
 			$Sprite.texture = preload('res://assets/night_plant_grown.png')
 			
 		$Area2D.input_pickable = false
+		$Light.visible = true
 		
 		color = Color.red
-	else:
+	elif !new:
 		$Sprite.texture = preload('res://assets/day_plant_grown.png')
 		$Area2D.input_pickable = true
+		$Light.visible = false
 		
 		color = Color.blue
 
@@ -62,5 +64,5 @@ func _on_Area2D_mouse_exited():
 func _draw():
 	var active = !Main.hovered_plants.empty() and Main.hovered_plants[0] == self
 	
-	draw_rect(Rect2(-82, 12, 164, 10), Color.white if active else color, false, 4)
-	draw_rect(Rect2(-80, 14, 160 * health, 6), color)
+	draw_rect(Rect2(-82, 18, 164, 16), Color.white if active else color, false, 4)
+	draw_rect(Rect2(-80, 20, 160 * health, 12), color)
