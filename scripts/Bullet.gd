@@ -22,3 +22,6 @@ func _on_Bullet_body_entered(body):
 		if body.health <= 0:
 			body.die()
 	queue_free()
+
+func daychange(is_night):
+	queue_free()
