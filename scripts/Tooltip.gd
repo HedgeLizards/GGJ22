@@ -8,9 +8,13 @@ var action = IDLE
 var active_plant
 var animation = 0
 var color
+var camera_offset
+var mouse_position_global
+var mouse_position
 
-onready var Main = get_parent()
+onready var Main = get_parent().get_parent()
 onready var Player = Main.get_node('Player')
+onready var Camer = Player.get_node('Camera2D')
 
 func daychange(is_night):
 	if is_night:
@@ -26,12 +30,22 @@ func daychange(is_night):
 func _process(delta):
 	if action == IDLE:
 		update_position_and_visibility()
+	else:
+		var current_camera_offset = Player.get_viewport().canvas_transform.origin
+		
+		if current_camera_offset != camera_offset:
+			rect_position += current_camera_offset - camera_offset
+			
+			camera_offset = current_camera_offset
 
 func update_position_and_visibility():
-	var mouse_position = get_global_mouse_position()
+	camera_offset = Player.get_viewport().canvas_transform.origin
 	
-	if mouse_position.distance_to(Player.position) < 300 && !(mouse_position.y < 200 && Main.hovered_plants.empty()):
-		rect_position = mouse_position - Vector2(rect_size.x / 2, rect_size.y + 10)
+	mouse_position_global = get_global_mouse_position()
+	mouse_position = (mouse_position_global - camera_offset) * Camer.zoom
+	
+	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 200 && Main.hovered_plants.empty()):
+		rect_position = mouse_position_global - Vector2(rect_size.x / 2, rect_size.y + 10)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
 		
@@ -52,7 +66,7 @@ func _input(event):
 				
 				$Tween.interpolate_property(self, 'animation', 0, 1, 2)
 				$Tween.start()
-			elif Main.hovered_plants[0].stage < 2:
+			elif Main.hovered_plants[0].new:
 				action = WATERING
 				
 				active_plant = Main.hovered_plants[0]
@@ -94,7 +108,7 @@ func _on_Tween_tween_completed(object, key):
 			PLANTING:
 				var new_plant = Plant.instance()
 				
-				new_plant.position = rect_position + Vector2(rect_size.x / 2, rect_size.y + 10)
+				new_plant.position = mouse_position
 				
 				Main.add_child(new_plant)
 			HARVESTING:

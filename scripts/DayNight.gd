@@ -32,7 +32,7 @@ func turn_night():
 	$DayMusic.stop()
 
 func _input(event):
-	if Input.is_action_just_pressed("skip"):
+	if event.is_action_pressed("skip"):
 		if day:
 			turn_night()
 		else:

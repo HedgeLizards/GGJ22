@@ -1,41 +1,37 @@
 extends Node2D
 
-var stage = 0
 var health = 1
+var new = true
 var watered = false
 var color = Color.blue
 var colliding_bunnies = 0
 
 onready var Main = get_parent()
-onready var Tooltip = Main.get_node('Tooltip')
-
-func _ready():
-	var DayNight = Main.get_node('DayNight')
-	
-	#DayNight.get_node('DayEnd').connect('timeout', self, '_on_DayEnd_timeout')
-	#DayNight.get_node('NightEnd').connect('timeout', self, '_on_NightEnd_timeout')
+onready var Tooltip = Main.get_node('CanvasLayer/Tooltip')
 
 func daychange(is_night):
 	if is_night:
-		color = Color.red
+		if new:
+			new = false
+			
+			$Sprite.texture = preload('res://assets/night_plant_growing.png')
+		else:
+			$Sprite.texture = preload('res://assets/night_plant_grown.png')
+			
 		$Area2D.input_pickable = false
-
-	else:
-		color = Color.blue
 		
+		color = Color.red
+	else:
+		$Sprite.texture = preload('res://assets/day_plant_grown.png')
 		$Area2D.input_pickable = true
 		
-		if (stage < 2):
-			stage += 1
-			
-			$Sprite.scale.y = [1, 1.5, 2][stage]
-			$Sprite.position.y = -$Sprite.scale.y * $Sprite.texture.get_height() / 2
+		color = Color.blue
 
 func _process(delta):
 	if $Area2D.input_pickable:
 		if watered:
 			health = min(health + delta / 2, 1)
-		elif stage < 2:
+		elif new:
 			health = max(health - delta / 20, 0)
 	else:
 		health -= delta / 10 * colliding_bunnies
@@ -55,7 +51,7 @@ func _on_Area2D_body_exited(body):
 func _on_Area2D_mouse_entered():
 	Main.hovered_plants.push_back(self)
 	
-	Tooltip.text = 'Click and hold to %s the plant' % ('water' if stage < 2 else 'harvest')
+	Tooltip.text = 'Click and hold to %s the plant' % ('water' if new else 'harvest')
 
 func _on_Area2D_mouse_exited():
 	Main.hovered_plants.erase(self)
@@ -64,6 +60,7 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	if !$Area2D.input_pickable || (!Main.hovered_plants.empty() && Main.hovered_plants[0] == self):
-		draw_rect(Rect2(-82, 12, 164, 10), color, false, 4)
-		draw_rect(Rect2(-80, 14, 160 * health, 6), color)
+	var active = !Main.hovered_plants.empty() && Main.hovered_plants[0] == self
+	
+	draw_rect(Rect2(-82, 12, 164, 10), Color.white if active else color, false, 4)
+	draw_rect(Rect2(-80, 14, 160 * health, 6), color)
