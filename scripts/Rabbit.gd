@@ -96,6 +96,7 @@ func is_enemy():
 func die():
 	var corpse = DeadBunny.instance()
 	corpse.global_transform = global_transform
+	corpse.scale.x = $Body.scale.x
 	get_parent().add_child(corpse)
 	queue_free()
 
