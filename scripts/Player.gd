@@ -72,5 +72,6 @@ func _physics_process(delta):
 func daychange(is_night):
 	$Body/Day.visible = not is_night
 	$Body/Night.visible = is_night
+	$Shotgun.visible = is_night
 
 
