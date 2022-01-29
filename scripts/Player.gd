@@ -8,6 +8,7 @@ var cooldown = 0
 
 
 const Bullet = preload("res://scenes/Bullet.tscn")
+const MuzzleFlash = preload("res://scenes/MuzzleFlash.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +29,9 @@ func shoot():
 		bullet.rotation += i * PI * 0.04
 		get_node("/root").add_child(bullet)
 	$Shotgun/Bang.play()
+	var flash = MuzzleFlash.instance()
+	flash.global_transform = $Shotgun/Muzzle.global_transform
+	get_node("/root").add_child(flash)
 
 func _physics_process(delta):
 	var is_night = get_node("/root/Main/DayNight").is_night()
