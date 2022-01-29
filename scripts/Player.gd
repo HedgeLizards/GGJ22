@@ -46,6 +46,10 @@ func _physics_process(delta):
 	
 	recoil -= delta
 	
+	if inp.x > 0:
+		$Body.scale.x = 1
+	elif inp.x < 0:
+		$Body.scale.x = -1
 	var vel = inp.normalized()
 	if is_night:
 		vel *= night_speed

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/carcass.png-cbc924f1e0df95a60befd5ee92e42c6e.stex"
+path="res://.import/day_deadbunny.png-2c907ea28f81939cb09512b708b6520b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carcass.png"
-dest_files=[ "res://.import/carcass.png-cbc924f1e0df95a60befd5ee92e42c6e.stex" ]
+source_file="res://assets/day_deadbunny.png"
+dest_files=[ "res://.import/day_deadbunny.png-2c907ea28f81939cb09512b708b6520b.stex" ]
 
 [params]
 

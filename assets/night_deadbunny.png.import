@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dead_evil_bunny.png-0bcf055f3e5e437621ccb53aede91a2c.stex"
+path="res://.import/night_deadbunny.png-cc765ff82a127be265b539c97ae92fcb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dead_evil_bunny.png"
-dest_files=[ "res://.import/dead_evil_bunny.png-0bcf055f3e5e437621ccb53aede91a2c.stex" ]
+source_file="res://assets/night_deadbunny.png"
+dest_files=[ "res://.import/night_deadbunny.png-cc765ff82a127be265b539c97ae92fcb.stex" ]
 
 [params]
 
