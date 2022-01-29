@@ -62,5 +62,5 @@ func _on_Area2D_mouse_exited():
 func _draw():
 	var active = !Main.hovered_plants.empty() and Main.hovered_plants[0] == self
 	
-	draw_rect(Rect2(-82, 12, 164, 10), Color.white if active else color, false, 4)
-	draw_rect(Rect2(-80, 14, 160 * health, 6), color)
+	draw_rect(Rect2(-82, 18, 164, 16), Color.white if active else color, false, 4)
+	draw_rect(Rect2(-80, 20, 160 * health, 12), color)

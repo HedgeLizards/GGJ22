@@ -22,7 +22,6 @@
 [ext_resource path="res://scenes/Plant.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 15 )
