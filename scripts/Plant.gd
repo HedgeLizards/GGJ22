@@ -4,6 +4,7 @@ var stage = 0
 var health = 1
 var watered = false
 var color = Color.blue
+var colliding_bunnies = 0
 
 onready var Main = get_parent()
 onready var Tooltip = Main.get_node('Tooltip')
@@ -15,40 +16,41 @@ func _ready():
 	DayNight.get_node('NightEnd').connect('timeout', self, '_on_NightEnd_timeout')
 
 func _on_DayEnd_timeout():
-	set_process(false)
-	update()
-	
 	color = Color.red
 	
 	$Area2D.input_pickable = false
 
 func _on_NightEnd_timeout():
+	color = Color.blue
+	
+	$Area2D.input_pickable = true
+	
 	if (stage < 2):
 		stage += 1
 		
 		$Sprite.scale.y = [1, 1.5, 2][stage]
 		$Sprite.position.y = -$Sprite.scale.y * $Sprite.texture.get_height() / 2
-	
-	if (stage < 2):
-		set_process(true)
-	else:
-		update()
-	
-	color = Color.blue
-	
-	$Area2D.input_pickable = true
 
 func _process(delta):
-	if watered:
-		health = min(health + delta / 2, 1)
+	if $Area2D.input_pickable:
+		if watered:
+			health = min(health + delta / 2, 1)
+		else:
+			health = max(health - delta / 20, 0)
 	else:
-		health -= delta / 20
+		health -= delta / 10 * colliding_bunnies
 		
-		if health <= 0:
+		if health < 0:
 			_on_Area2D_mouse_exited()
 			queue_free()
 	
 	update()
+
+func _on_Area2D_body_entered(body):
+	colliding_bunnies += 1
+
+func _on_Area2D_body_exited(body):
+	colliding_bunnies -= 1
 
 func _on_Area2D_mouse_entered():
 	Main.hovered_plants.push_back(self)
