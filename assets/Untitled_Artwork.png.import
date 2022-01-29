@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/night_background.png-f2953c46543b549eca1991054de0965d.stex"
+path="res://.import/Untitled_Artwork.png-d90c847bcdbe0f822183364093d4c923.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/night_background.png"
-dest_files=[ "res://.import/night_background.png-f2953c46543b549eca1991054de0965d.stex" ]
+source_file="res://assets/Untitled_Artwork.png"
+dest_files=[ "res://.import/Untitled_Artwork.png-d90c847bcdbe0f822183364093d4c923.stex" ]
 
 [params]
 
