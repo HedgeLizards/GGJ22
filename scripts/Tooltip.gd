@@ -12,19 +12,16 @@ var color
 onready var Main = get_parent()
 onready var Player = Main.get_node('Player')
 
-func _on_DayEnd_timeout():
-	release_action()
+func daychange(is_night):
+	if is_night:
+		release_action()
+		
+		Input.set_default_cursor_shape(CURSOR_ARROW)
+		
+		visible = false
 	
-	Input.set_default_cursor_shape(CURSOR_ARROW)
-	
-	visible = false
-	
-	set_process(false)
-	set_process_input(false)
-
-func _on_NightEnd_timeout():
-	set_process(true)
-	set_process_input(true)
+	set_process(not is_night)
+	set_process_input(not is_night)
 
 func _process(delta):
 	if action == IDLE:

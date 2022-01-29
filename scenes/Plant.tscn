@@ -7,7 +7,7 @@
 radius = 40.0
 height = 84.0
 
-[node name="Plant" type="Node2D" groups=["plants"]]
+[node name="Plant" type="Node2D" groups=["dual", "plants"]]
 z_index = -3
 script = ExtResource( 2 )
 

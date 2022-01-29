@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Untitled_Artwork 2.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scripts/Environment.gd" type="Script" id=10]
 [ext_resource path="res://assets/day_sky.png" type="Texture" id=11]
 [ext_resource path="res://assets/night_sky.png" type="Texture" id=12]
+[ext_resource path="res://assets/MUS_Night.ogg" type="AudioStream" id=13]
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -67,7 +68,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tooltip" type="Label" parent="."]
+[node name="Tooltip" type="Label" parent="." groups=["dual"]]
 visible = false
 text = "Click and hold to plant a seed"
 align = 1
@@ -116,9 +117,8 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="NightEnd" type="Timer" parent="DayNight"]
-wait_time = 5.0
-one_shot = true
+[node name="NightMusic" type="AudioStreamPlayer" parent="DayNight"]
+stream = ExtResource( 13 )
 
 [node name="Spawner" type="Timer" parent="."]
 autostart = true
@@ -126,8 +126,6 @@ script = ExtResource( 6 )
 
 [connection signal="tween_completed" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="Tooltip/Tween" to="Tooltip" method="_on_Tween_tween_step"]
-[connection signal="timeout" from="DayNight/DayEnd" to="Tooltip" method="_on_DayEnd_timeout"]
 [connection signal="timeout" from="DayNight/DayEnd" to="DayNight" method="_on_DayEnd_timeout"]
-[connection signal="timeout" from="DayNight/NightEnd" to="Tooltip" method="_on_NightEnd_timeout"]
-[connection signal="timeout" from="DayNight/NightEnd" to="DayNight" method="_on_NightEnd_timeout"]
+[connection signal="finished" from="DayNight/NightMusic" to="DayNight" method="_on_NightMusic_finished"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_Spawner_timeout"]
