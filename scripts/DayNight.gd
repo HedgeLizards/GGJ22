@@ -9,6 +9,8 @@ var initialized = false
 var nbeats = 0
 var ndays = 0 # The first day this is immidiately incremented so ndays 1 is the first day
 
+onready var HUD = get_node("/root/Main/HUD")
+
 #var startspeed = 2
 #var endspeed = 5
 
@@ -43,6 +45,12 @@ func turn_night():
 	$BeatTimer.start()
 	$DayMusic.stop()
 	$DayOutro.play(0.0)
+	HUD.get_node("Heart").visible = true
+	HUD.get_node("HeartLabel").visible = true
+	HUD.get_node("Moon").visible = false
+	HUD.get_node("MoonLabel").visible = false
+	HUD.get_node("Plant").visible = false
+	HUD.get_node("PlantLabel").visible = false
 	VisualServer.set_default_clear_color(Color.black)
 
 func _input(event):
@@ -65,6 +73,13 @@ func turn_day():
 	$DayMusic.play(0.0)
 	if initialized:
 		$NightOutro.play(0.0)
+		HUD.get_node("Heart").visible = false
+		HUD.get_node("HeartLabel").visible = false
+		HUD.get_node("Moon").visible = true
+		HUD.get_node("MoonLabel").text = str(ndays - 1)
+		HUD.get_node("MoonLabel").visible = true
+		HUD.get_node("Plant").visible = true
+		HUD.get_node("PlantLabel").visible = true
 	VisualServer.set_default_clear_color(Color(155, 246, 255, 255) / 255.0)
 
 func _on_DayEnd_timeout():

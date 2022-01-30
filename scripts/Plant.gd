@@ -5,8 +5,8 @@ var new = true
 var watered = false
 var colliding_bunnies = 0
 
-onready var Main = get_node("/root/Main")
-onready var Tooltip = Main.get_node('CanvasLayer/Tooltip')
+onready var Main = get_node('/root/Main')
+onready var Tooltip = Main.get_node('HUD/Tooltip')
 
 func _ready():
 	z_index = position.y

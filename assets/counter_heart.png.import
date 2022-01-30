@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/healthouter.png-f787b99a6aca0dc0a69111713eec946f.stex"
+path="res://.import/counter_heart.png-3fdffa05568b8ee96d00acead4c80289.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/healthouter.png"
-dest_files=[ "res://.import/healthouter.png-f787b99a6aca0dc0a69111713eec946f.stex" ]
+source_file="res://assets/counter_heart.png"
+dest_files=[ "res://.import/counter_heart.png-3fdffa05568b8ee96d00acead4c80289.stex" ]
 
 [params]
 

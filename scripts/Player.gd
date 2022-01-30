@@ -56,9 +56,10 @@ func _physics_process(delta):
 	else:
 		player_health += delta * 0.5
 	
-	if player_health < 0:
+	player_health = min(max(player_health, 0), max_health)
+	get_node("/root/Main/HUD/HeartLabel").text = '%d%%' % (player_health * 100)
+	if player_health == 0:
 		get_tree().reload_current_scene()
-	player_health = min(player_health, max_health)
 	
 	if inp.x > 0:
 		$Body.scale.x = abs($Body.scale.x)
