@@ -3,7 +3,6 @@ extends Node2D
 var health = 1
 var new = true
 var watered = false
-var color = Color.blue
 var colliding_bunnies = 0
 
 onready var Main = get_node("/root/Main")
@@ -23,14 +22,12 @@ func daychange(is_night):
 			
 		$Area2D.input_pickable = false
 		$Light.visible = true
-		
-		color = Color.red
 	elif !new:
 		$Sprite.texture = preload('res://assets/day_plant_grown.png')
+		
 		$Area2D.input_pickable = true
 		$Light.visible = false
-		
-		color = Color.blue
+	
 
 func _process(delta):
 	if $Area2D.input_pickable:
@@ -65,7 +62,10 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	var active = !Main.hovered_plants.empty() and Main.hovered_plants[0] == self
+	var color = Color.blue if new else Color.red
+
+	if $Area2D.input_pickable && (Main.hovered_plants.empty() || Main.hovered_plants[0] != self):
+		color[3] = 0.4
 	
-	draw_rect(Rect2(-82, 43, 164, 16), Color.white if active else color, false, 4)
+	draw_rect(Rect2(-82, 43, 164, 16), color, false, 4)
 	draw_rect(Rect2(-80, 45, 160 * health, 12), color)

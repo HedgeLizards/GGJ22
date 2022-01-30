@@ -109,6 +109,7 @@ func _on_Tween_tween_completed(object, key):
 				var new_plant = Plant.instance()
 				
 				new_plant.position = mouse_position
+				new_plant.position.y -= 10
 				
 				Main.add_child(new_plant)
 			HARVESTING:
