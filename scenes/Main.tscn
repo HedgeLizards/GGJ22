@@ -139,7 +139,7 @@ music_path = NodePath("../../../DayNight/NightMusic")
 texture = ExtResource( 25 )
 mode = 2
 range_z_min = -4096
-range_z_max = 4096
+range_z_max = -4096
 
 [node name="Hills" type="Sprite" parent="Environment/Night"]
 material = SubResource( 3 )
@@ -149,12 +149,13 @@ centered = false
 
 [node name="Ground" type="Sprite" parent="Environment/Night"]
 position = Vector2( 0, 817 )
+z_index = 2048
 texture = ExtResource( 8 )
 centered = false
 
 [node name="Border" type="Sprite" parent="Environment/Night"]
 position = Vector2( 0, 653 )
-z_index = 4096
+z_index = 2048
 z_as_relative = false
 texture = ExtResource( 17 )
 centered = false
