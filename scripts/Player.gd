@@ -60,9 +60,9 @@ func _physics_process(delta):
 	player_health = min(player_health, max_health)
 	
 	if inp.x > 0:
-		$Body.scale.x = 1
+		$Body.scale.x = abs($Body.scale.x)
 	elif inp.x < 0:
-		$Body.scale.x = -1
+		$Body.scale.x = -abs($Body.scale.x)
 	var vel = inp.normalized()
 	if is_night:
 		vel *= night_speed
