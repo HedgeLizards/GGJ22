@@ -86,8 +86,9 @@ margin_bottom = 356.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
-text = "Click to retry"
+text = "Retry"
 flat = true
 
 [connection signal="mouse_entered" from="Retry" to="." method="_on_Retry_mouse_entered"]
 [connection signal="mouse_exited" from="Retry" to="." method="_on_Retry_mouse_exited"]
+[connection signal="pressed" from="Retry" to="." method="_on_Retry_pressed"]

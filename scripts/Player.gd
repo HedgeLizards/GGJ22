@@ -25,11 +25,11 @@ func shoot():
 		var bullet = Bullet.instance()
 		bullet.global_transform = $Shotgun/Muzzle.global_transform
 		bullet.rotation += i * PI * 0.04
-		get_node("/root").add_child(bullet)
+		Main.add_child(bullet)
 	$Shotgun/Bang.play()
 	var flash = MuzzleFlash.instance()
 	flash.global_transform = $Shotgun/Muzzle.global_transform
-	get_node("/root").add_child(flash)
+	Main.add_child(flash)
 	recoil_dir = Vector2(-5000, 0).rotated($Shotgun/Muzzle.global_rotation)
 	recoil = 0.2
 	$Shotgun/Sprite.visible = false
@@ -63,7 +63,6 @@ func _physics_process(delta):
 	if player_health == 0:
 		Stats.plants_harvested = Main.plants_harvested
 		Stats.nights_survived = Main.get_node("DayNight").ndays - 1
-		Main.get_node("Spawner").stop()
 		get_tree().change_scene_to(preload("res://scenes/End.tscn"))
 	
 	if inp.x > 0:
