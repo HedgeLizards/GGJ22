@@ -264,7 +264,7 @@ position = Vector2( 2049, 1470.75 )
 scale = Vector2( 1, 76.8 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1000, 580 )
+position = Vector2( 1024.5, 580 )
 scale = Vector2( 1000, 10 )
 collision_layer = 3
 
@@ -358,6 +358,7 @@ autostart = true
 
 [node name="ODearyMe" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 39 )
+volume_db = 5.0
 script = ExtResource( 38 )
 
 [node name="Timer" type="Timer" parent="ODearyMe"]

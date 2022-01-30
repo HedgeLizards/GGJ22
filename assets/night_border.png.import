@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/night_border.png-59555c885cebbf9df44611f8c8c5e775.stex"
+path="res://.import/Night_border.png-44896b7b633009ec27c59c2c99c6cf32.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/night_border.png"
-dest_files=[ "res://.import/night_border.png-59555c885cebbf9df44611f8c8c5e775.stex" ]
+source_file="res://assets/Night_border.png"
+dest_files=[ "res://.import/Night_border.png-44896b7b633009ec27c59c2c99c6cf32.stex" ]
 
 [params]
 
