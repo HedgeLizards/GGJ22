@@ -12,6 +12,8 @@ onready var Tooltip = Main.get_node('HUD/Tooltip')
 
 func _ready():
 	z_index = position.y
+	if stage != Stage.Seed:
+		health = 1
 
 func daychange(is_night):
 	if is_night and stage <= Stage.Seed:
