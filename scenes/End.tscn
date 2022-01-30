@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/counter_plant.png" type="Texture" id=1]
+[ext_resource path="res://assets/FiraSans-ExtraBold.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/counter_moon.png" type="Texture" id=3]
+[ext_resource path="res://scripts/End.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 2 )
+
+[node name="End" type="VBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 75
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 662.0
+margin_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Plant" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 662.0
+margin_bottom = 75.0
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="VBoxContainer/Plant"]
+margin_right = 572.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+custom_fonts/font = SubResource( 1 )
+text = "You harvested %d plants"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/Plant"]
+margin_left = 587.0
+margin_right = 662.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Moon" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 79.0
+margin_right = 662.0
+margin_bottom = 154.0
+custom_constants/separation = 25
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Moon"]
+margin_left = 14.0
+margin_right = 547.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+custom_fonts/font = SubResource( 1 )
+text = "You survived %d nights"
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/Moon"]
+margin_left = 572.0
+margin_right = 647.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Retry" type="Button" parent="."]
+margin_top = 229.0
+margin_right = 662.0
+margin_bottom = 356.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+text = "Retry"
+flat = true
+
+[connection signal="mouse_entered" from="Retry" to="." method="_on_Retry_mouse_entered"]
+[connection signal="mouse_exited" from="Retry" to="." method="_on_Retry_mouse_exited"]
+[connection signal="pressed" from="Retry" to="." method="_on_Retry_pressed"]

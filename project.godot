@@ -14,6 +14,10 @@ config/name="GGJ 22"
 run/main_scene="res://scenes/Start.tscn"
 config/icon="res://assets/counter_plant.png"
 
+[autoload]
+
+Stats="*res://scripts/Stats.gd"
+
 [debug]
 
 settings/fps/force_fps=240

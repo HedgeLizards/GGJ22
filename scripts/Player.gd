@@ -12,6 +12,8 @@ var max_health = 1
 var player_health = max_health
 var collidingbunnies = 0
 
+onready var Main = get_node("/root/Main")
+
 const Bullet = preload("res://scenes/Bullet.tscn")
 const MuzzleFlash = preload("res://scenes/MuzzleFlash.tscn")
 
@@ -36,7 +38,7 @@ func shoot():
 	$Camera.shake(160)
 
 func _physics_process(delta):
-	var is_night = get_node("/root/Main/DayNight").is_night()
+	var is_night = Main.get_node("DayNight").is_night()
 	var inp = Vector2(
 		int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")),
 		int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
@@ -57,9 +59,12 @@ func _physics_process(delta):
 		player_health += delta * 0.5
 	
 	player_health = min(max(player_health, 0), max_health)
-	get_node("/root/Main/HUD/HeartLabel").text = '%d%%' % (player_health * 100)
+	Main.get_node("HUD/HeartLabel").text = '%d%%' % (player_health * 100)
 	if player_health == 0:
-		get_tree().reload_current_scene()
+		Stats.plants_harvested = Main.plants_harvested
+		Stats.nights_survived = Main.get_node("DayNight").ndays - 1
+		Main.get_node("Spawner").stop()
+		get_tree().change_scene_to(preload("res://scenes/End.tscn"))
 	
 	if inp.x > 0:
 		$Body.scale.x = abs($Body.scale.x)
