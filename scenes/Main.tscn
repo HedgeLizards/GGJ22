@@ -222,18 +222,22 @@ script = ExtResource( 6 )
 
 [node name="Plant" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 374.5, 970.75 )
+stage = 2
 
 [node name="Plant5" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 1024.5, 1470.75 )
 
 [node name="Plant4" parent="InitialPlants" instance=ExtResource( 20 )]
-position = Vector2( 1674.5, 1970.75 )
+position = Vector2( 1674.5, 1750 )
+stage = 2
 
 [node name="Plant2" parent="InitialPlants" instance=ExtResource( 20 )]
-position = Vector2( 374.5, 1970.75 )
+position = Vector2( 374.5, 1700 )
 
 [node name="Plant3" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 1674.5, 970.75 )
+scale = Vector2( 1, 1.00402 )
+stage = 2
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )

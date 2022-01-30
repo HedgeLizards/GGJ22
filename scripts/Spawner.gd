@@ -2,9 +2,9 @@ extends Timer
 
 
 
-var max_rabbits = 5
+var max_rabbits = 6
 var outside_spawn_distance = 40
-var delay = 4
+var delay = 1
 
 const Rabbit = preload("res://scenes/Rabbit.tscn")
 

@@ -33,7 +33,7 @@ func shoot():
 	$Shotgun/Sprite.visible = false
 	$Shotgun/FireSprite.visible = true
 	$Shotgun/FireTimer.start()
-	$Camera.shake(50)
+	$Camera.shake(160)
 
 func _physics_process(delta):
 	var is_night = get_node("/root/Main/DayNight").is_night()
