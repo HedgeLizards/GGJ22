@@ -54,6 +54,7 @@ func turn_night():
 	VisualServer.set_default_clear_color(Color.black)
 
 func _input(event):
+	return
 	if event.is_action_pressed("skip"):
 		if day:
 			turn_night()

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SFX_Granny_IShouldPlant.wav-fae14484bba85c3a67c6ebc8f900f9cb.sample"
+
+[deps]
+
+source_file="res://assets/SFX_Granny_IShouldPlant.wav"
+dest_files=[ "res://.import/SFX_Granny_IShouldPlant.wav-fae14484bba85c3a67c6ebc8f900f9cb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
