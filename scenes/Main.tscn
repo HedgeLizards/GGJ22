@@ -8,7 +8,7 @@
 [ext_resource path="res://scripts/Spawner.gd" type="Script" id=6]
 [ext_resource path="res://scripts/DayNight.gd" type="Script" id=7]
 [ext_resource path="res://assets/night_ground.png" type="Texture" id=8]
-[ext_resource path="res://scripts/Camer.gd" type="Script" id=9]
+[ext_resource path="res://scenes/Camera.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/Environment.gd" type="Script" id=10]
 [ext_resource path="res://assets/counter_plant.png" type="Texture" id=11]
 [ext_resource path="res://assets/sun.png" type="Texture" id=12]
@@ -185,13 +185,7 @@ scale = Vector2( 102.45, 1 )
 [node name="Player" parent="." groups=["dual"] instance=ExtResource( 3 )]
 position = Vector2( 1024.5, 1000 )
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-limit_left = 0
-limit_top = 0
-smoothing_enabled = true
-smoothing_speed = 15.0
-script = ExtResource( 9 )
+[node name="Camera" parent="Player" instance=ExtResource( 9 )]
 
 [node name="DayNight" type="Node" parent="."]
 script = ExtResource( 7 )

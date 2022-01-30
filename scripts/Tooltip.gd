@@ -14,7 +14,7 @@ var mouse_position
 
 onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node('Player')
-onready var Camer = Player.get_node('Camera2D')
+onready var Camer = Player.get_node('Camera')
 
 func daychange(is_night):
 	if is_night:
