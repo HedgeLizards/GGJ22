@@ -220,6 +220,7 @@ volume_db = -10.0
 wait_time = 0.5
 
 [node name="Spawner" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 script = ExtResource( 6 )
 

@@ -7,6 +7,7 @@ var time = 0
 var day = true
 var initialized = false
 var nbeats = 0
+var ndays = 0 # The first day this is immidiately incremented so ndays 1 is the first day
 
 #var startspeed = 2
 #var endspeed = 5
@@ -55,6 +56,7 @@ func turn_day():
 	if day and initialized:
 		return
 	day = true
+	ndays += 1
 	$DayEnd.start()
 	get_tree().call_group("dual", "daystart")
 	get_tree().call_group("dual", "daychange", false)

@@ -2,14 +2,16 @@ extends Timer
 
 
 
-export var max_rabbits = 5
-export var outside_spawn_distance = 40
+var max_rabbits = 5
+var outside_spawn_distance = 40
+var delay = 4
 
 const Rabbit = preload("res://scenes/Rabbit.tscn")
 
 
 func _on_Spawner_timeout():
-	if get_tree().get_nodes_in_group("bunnies").size() < max_rabbits:
+	var ndays = get_node("/root/Main/DayNight").ndays
+	if get_tree().get_nodes_in_group("bunnies").size() < ndays + 2:
 		
 		var bunny = Rabbit.instance()
 		get_node("/root").add_child(bunny)
@@ -21,3 +23,4 @@ func _on_Spawner_timeout():
 		var top_y = get_node("/root/Main/TopEdge").position.y + 5
 		var bottom_y = get_node("/root/Main/BottomEdge").position.y
 		bunny.global_position.y = top_y + randf() * (bottom_y - top_y)
+		start(max(1, delay - ndays))
