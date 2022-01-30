@@ -10,6 +10,7 @@ var night_speed = 750
 var evil = false
 var health = 10
 var edge_distance = 100
+var is_dead = false
 
 
 const DeadBunny = preload("res://scenes/DeadBunny.tscn")
@@ -96,6 +97,9 @@ func is_enemy():
 
 
 func die(direction):
+	if is_dead:
+		return
+	is_dead = true
 	var corpse = DeadBunny.instance()
 	corpse.vel = 0.2
 	corpse.dir = Vector2(10, 0).rotated(direction)
@@ -110,7 +114,6 @@ func die(direction):
 func _physics_process(delta):
 	
 	if status == Status.MOVE:
-		
 		if direction.x > 0:
 			$Body.scale.x = -1
 		elif direction.x < 0:
