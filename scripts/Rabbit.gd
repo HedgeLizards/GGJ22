@@ -124,6 +124,7 @@ func _physics_process(delta):
 		else:
 			vel *= speed
 		move_and_slide(vel)
+		#position.y += sin
 		z_index = position.y
 		
 		

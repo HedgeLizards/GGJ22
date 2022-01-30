@@ -340,7 +340,7 @@ script = ExtResource( 35 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Canary"]
 frames = SubResource( 6 )
-frame = 1
+frame = 2
 playing = true
 
 [connection signal="tween_completed" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_completed"]
