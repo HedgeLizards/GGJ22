@@ -2,7 +2,7 @@ extends Node2D
 
 enum Stage {Seed = 0, Growing = 1, Grown = 2}
 export (Stage) var stage = Stage.Seed
-var health = 1
+var health = 0.1
 var watered = false
 var colliding_bunnies = 0
 
@@ -41,9 +41,9 @@ func daychange(is_night):
 func _process(delta):
 	if $Area2D.input_pickable:
 		if watered:
-			health = min(health + delta / 2, 1)
+			health = min(health + delta * 0.5, 1)
 		elif stage == Stage.Seed:
-			health = max(health - delta / 20, 0)
+			health = max(health - delta * 0.02, 0.1)
 	else:
 		health -= delta / 10 * colliding_bunnies
 		
