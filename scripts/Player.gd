@@ -52,7 +52,7 @@ func _physics_process(delta):
 	if collidingbunnies > 0 and is_night:
 		player_health -= delta * collidingbunnies * 0.1
 	elif is_night:
-		player_health += delta * 0.01
+		pass
 	else:
 		player_health += delta * 0.5
 	
