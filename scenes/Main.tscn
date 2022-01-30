@@ -158,7 +158,7 @@ script = ExtResource( 10 )
 z_index = -4096
 
 [node name="Celestial" type="Sprite" parent="Environment/Day"]
-position = Vector2( 252.242, 782.512 )
+position = Vector2( 287.281, 757.606 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 12 )
 script = ExtResource( 23 )
@@ -187,7 +187,7 @@ visible = false
 z_index = -4096
 
 [node name="Celestial" type="Sprite" parent="Environment/Night"]
-position = Vector2( 252.242, 782.512 )
+position = Vector2( 287.281, 757.606 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 24 )
 script = ExtResource( 23 )
