@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 export var day_speed = 250
 export var night_speed = 750
-export var max_cooldown = 0.5
+export var max_cooldown = 0.1
 var cooldown = 0
 var recoil_dir = Vector2(0, 0)
 var recoil = 0

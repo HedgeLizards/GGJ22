@@ -2,7 +2,7 @@ extends Timer
 
 
 
-var max_rabbits = 6
+var max_rabbits = 60
 var outside_spawn_distance = 40
 var delay = 1
 
@@ -23,4 +23,4 @@ func _on_Spawner_timeout():
 		var top_y = get_node("/root/Main/TopEdge").position.y + 30
 		var bottom_y = get_node("/root/Main/BottomEdge").position.y
 		bunny.global_position.y = top_y + randf() * (bottom_y - top_y)
-		start(max(1, delay - ndays))
+		start(0.1)
