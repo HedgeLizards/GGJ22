@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/day_ground.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
@@ -30,6 +30,10 @@
 [ext_resource path="res://scripts/Pointer.gd" type="Script" id=28]
 [ext_resource path="res://assets/SFX_Planting.wav" type="AudioStream" id=29]
 [ext_resource path="res://assets/SFX_Harvesting.wav" type="AudioStream" id=30]
+[ext_resource path="res://assets/2.png" type="Texture" id=31]
+[ext_resource path="res://assets/1.png" type="Texture" id=32]
+[ext_resource path="res://assets/3.png" type="Texture" id=33]
+[ext_resource path="res://assets/4.png" type="Texture" id=34]
 
 [sub_resource type="DynamicFont" id=4]
 size = 50
@@ -49,6 +53,14 @@ light_mode = 1
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 4.0
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 32 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -246,8 +258,8 @@ position = Vector2( 2049, 1470.75 )
 scale = Vector2( 1, 76.8 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1024.5, 690 )
-scale = Vector2( 1000, 1 )
+position = Vector2( 1000, 580 )
+scale = Vector2( 1000, 10 )
 collision_layer = 3
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
@@ -318,6 +330,15 @@ script = ExtResource( 28 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
 shape = SubResource( 5 )
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+scale = Vector2( 100, 100 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D"]
+frames = SubResource( 6 )
+frame = 3
+playing = true
 
 [connection signal="tween_completed" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_step"]
