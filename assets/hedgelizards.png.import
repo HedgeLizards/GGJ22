@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Logo.png-f4b7c4ba7d9b168635416fce503fab9f.stex"
+path="res://.import/hedgelizards.png-6c846f7228910aaa41058b2cb51810df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Logo.png"
-dest_files=[ "res://.import/Logo.png-f4b7c4ba7d9b168635416fce503fab9f.stex" ]
+source_file="res://assets/hedgelizards.png"
+dest_files=[ "res://.import/hedgelizards.png-6c846f7228910aaa41058b2cb51810df.stex" ]
 
 [params]
 
