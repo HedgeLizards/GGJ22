@@ -26,17 +26,17 @@ __meta__ = {
 }
 
 [node name="Play" type="Button" parent="."]
-margin_right = 430.0
+margin_right = 573.0
 margin_bottom = 127.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 1 )
-text = "Play"
+text = "Click to play"
 flat = true
 
 [node name="Warning" type="Label" parent="."]
 margin_top = 177.0
-margin_right = 430.0
+margin_right = 573.0
 margin_bottom = 208.0
 custom_fonts/font = SubResource( 2 )
 text = "EPILEPSY WARNING: FLASHING LIGHTS"
@@ -45,7 +45,7 @@ valign = 1
 
 [node name="Logo" type="TextureRect" parent="."]
 margin_top = 258.0
-margin_right = 430.0
+margin_right = 573.0
 margin_bottom = 386.0
 rect_min_size = Vector2( 128, 128 )
 texture = ExtResource( 3 )
@@ -54,4 +54,3 @@ stretch_mode = 6
 
 [connection signal="mouse_entered" from="Play" to="." method="_on_Play_mouse_entered"]
 [connection signal="mouse_exited" from="Play" to="." method="_on_Play_mouse_exited"]
-[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]

@@ -26,6 +26,7 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 
 [node name="Night" type="Sprite" parent="Body"]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -33,6 +34,7 @@ position = Vector2( 0, -43 )
 shape = SubResource( 1 )
 
 [node name="Shotgun" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -70 )
 
 [node name="Sprite" type="Sprite" parent="Shotgun"]
