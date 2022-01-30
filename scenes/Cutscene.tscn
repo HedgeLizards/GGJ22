@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/big-buck-bunny_trailer.webm" type="VideoStream" id=1]
+[ext_resource path="res://assets/FiraSans-ExtraBold.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/Cutscene.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Cutscene" type="VideoPlayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stream = ExtResource( 1 )
+autoplay = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skip" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = 25.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 1 )
+text = "Skip"
+flat = true
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="finished" from="." to="." method="_on_Cutscene_finished"]
+[connection signal="mouse_entered" from="Skip" to="." method="_on_Skip_mouse_entered"]
+[connection signal="mouse_exited" from="Skip" to="." method="_on_Skip_mouse_exited"]
+[connection signal="pressed" from="Skip" to="." method="_on_Skip_pressed"]
