@@ -32,12 +32,12 @@ autostart = true
 position = Vector2( 0, -25 )
 
 [node name="DaySprite" type="Sprite" parent="Body"]
-position = Vector2( 0, -30 )
+position = Vector2( 0, -35 )
 texture = ExtResource( 1 )
 
 [node name="NightSprite" type="Sprite" parent="Body"]
 visible = false
-position = Vector2( 0, -65 )
+position = Vector2( 0, -55 )
 texture = ExtResource( 3 )
 
 [connection signal="timeout" from="RethinkTimer" to="." method="_on_RethinkTimer_timeout"]

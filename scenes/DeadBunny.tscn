@@ -8,12 +8,12 @@
 script = ExtResource( 2 )
 
 [node name="Corpse" type="Sprite" parent="."]
-position = Vector2( 0, -90 )
+position = Vector2( 0, -80 )
 texture = ExtResource( 1 )
 
 [node name="Carcass" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0, -55 )
+position = Vector2( 0, -60 )
 texture = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
