@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Day_border.png-9be9d5372b0207e49159a3ea3aa80321.stex"
+path="res://.import/Day_border2.png-2d6f72e2b49ea547a299503524f5489d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Day_border.png"
-dest_files=[ "res://.import/Day_border.png-9be9d5372b0207e49159a3ea3aa80321.stex" ]
+source_file="res://assets/Day_border2.png"
+dest_files=[ "res://.import/Day_border2.png-2d6f72e2b49ea547a299503524f5489d.stex" ]
 
 [params]
 
