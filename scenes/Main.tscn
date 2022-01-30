@@ -158,6 +158,7 @@ __meta__ = {
 
 [node name="Planting" type="AudioStreamPlayer" parent="HUD/Tooltip"]
 stream = ExtResource( 29 )
+volume_db = 5.0
 
 [node name="Harvesting" type="AudioStreamPlayer" parent="HUD/Tooltip"]
 stream = ExtResource( 30 )

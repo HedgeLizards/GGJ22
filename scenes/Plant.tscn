@@ -23,7 +23,7 @@ monitorable = false
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -82.5 )
+position = Vector2( -5, -82.5 )
 texture = ExtResource( 1 )
 
 [node name="Light" type="Light2D" parent="."]
