@@ -1,4 +1,4 @@
-# GRANDMØTHER
+# Cathy's Garden
 
 A cute bunny petting game
 
