@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/day_ground.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/lightmask.png" type="Texture" id=25]
 [ext_resource path="res://assets/counter_heart.png" type="Texture" id=26]
 [ext_resource path="res://assets/counter_moon.png" type="Texture" id=27]
+[ext_resource path="res://scenes/Pointer.gd" type="Script" id=28]
 
 [sub_resource type="DynamicFont" id=4]
 size = 50
@@ -43,6 +44,9 @@ font_data = ExtResource( 15 )
 light_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id=2]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 4.0
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -298,6 +302,14 @@ stage = 2
 [node name="Plant3" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 1674.5, 970.75 )
 stage = 2
+
+[node name="Pointer" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource( 28 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
+shape = SubResource( 5 )
 
 [connection signal="tween_completed" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_step"]
