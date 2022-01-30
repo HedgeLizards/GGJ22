@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/night1.png" type="Texture" id=2]
@@ -8,7 +8,10 @@
 [ext_resource path="res://assets/gun_flash.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 45 )
+extents = Vector2( 40, 40 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 45, 45 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 3
@@ -51,4 +54,14 @@ texture = ExtResource( 6 )
 wait_time = 0.1
 one_shot = true
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -43 )
+shape = SubResource( 2 )
+
 [connection signal="timeout" from="Shotgun/FireTimer" to="." method="_on_FireTimer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_Hitbox_body_exited"]
