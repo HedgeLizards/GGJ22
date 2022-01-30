@@ -78,10 +78,30 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	var color = Color.blue if stage == Stage.Seed else Color.red
+	var color_end = Color.blue if stage == Stage.Seed else Color.red
+	var color_start
 
 	if $Area2D.input_pickable && (Main.hovered_plants.empty() || Main.hovered_plants[0] != self):
-		color[3] = 0.4
+		color_end.a = 0.4
+		
+		color_start = color_end
+	else:
+		color_start = color_end
+		
+		color_start.r /= 2
+		color_start.g /= 2
+		color_start.b /= 2
 	
-	draw_rect(Rect2(-82, 43, 164, 16), color, false, 4)
-	draw_rect(Rect2(-80, 45, 160 * health, 12), color)
+	draw_rect(Rect2(-82, 43, 164, 16), color_start, false, 4)
+	
+	draw_polygon([
+		Vector2(-80, 45),
+		Vector2(-80 + 160 * health, 45),
+		Vector2(-80 + 160 * health, 45 + 12),
+		Vector2(-80, 45 + 12)
+	], [
+		color_start,
+		color_end,
+		color_end,
+		color_start
+	])
