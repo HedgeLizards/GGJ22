@@ -48,7 +48,7 @@ func _physics_process(delta):
 	
 	recoil -= delta
 	
-	if collidingbunnies > 0:
+	if collidingbunnies > 0 and is_night:
 		player_health -= delta * collidingbunnies * 0.1
 	elif is_night:
 		player_health += delta * 0.01
@@ -56,7 +56,7 @@ func _physics_process(delta):
 		player_health += delta * 0.5
 	
 	if player_health < 0:
-		get_tree().quit()
+		get_tree().reload_current_scene()
 	player_health = min(player_health, max_health)
 	
 	if inp.x > 0:
@@ -99,4 +99,4 @@ func _on_Hitbox_body_entered(body):
 	
 
 func _on_Hitbox_body_exited(body):
-	collidingbunnies += 1
+	collidingbunnies -= 1
