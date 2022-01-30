@@ -75,6 +75,10 @@ func _physics_process(delta):
 	
 	var mouse_position = get_global_mouse_position()
 	$Shotgun.look_at(mouse_position)
+	if mouse_position.x < $Shotgun.global_position.x:
+		$Shotgun/Sprite.scale.y = -abs($Shotgun/Sprite.scale.y)
+	else:
+		$Shotgun/Sprite.scale.y = abs($Shotgun/Sprite.scale.y)
 	
 	if Input.is_action_pressed("shoot") and is_night and cooldown <= 0:
 		shoot()
