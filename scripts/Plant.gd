@@ -23,11 +23,11 @@ func daychange(is_night):
 	
 	if is_night:
 		if stage == Stage.Growing:
-			$Sprite.texture = preload('res://assets/night_plant_growing.png')
+			$Sprite.texture = preload('res://assets/night_flower_growing.png')
 			$Light.scale.x = 0.6
 			$Light.scale.y = 0.6
 		elif stage == Stage.Grown:
-			$Sprite.texture = preload('res://assets/night_plant_grown.png')
+			$Sprite.texture = preload('res://assets/night_flower_grown.png')
 			$Light.scale.x = 1
 			$Light.scale.y = 1
 		
@@ -35,7 +35,7 @@ func daychange(is_night):
 		$Light.visible = true
 	else:
 		if stage == Stage.Grown:
-			$Sprite.texture = preload('res://assets/day_plant_grown.png')
+			$Sprite.texture = preload('res://assets/day_flower_grown_.png')
 		
 		$Area2D.input_pickable = true
 		$Light.visible = false
