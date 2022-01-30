@@ -71,6 +71,9 @@ func _input(event):
 			#visible = true
 			if Main.hovered_plants.empty():
 				if Pointer.get_overlapping_bodies().size() == 0:
+					if not $Planting.playing:
+						$Planting.play()
+						print("Planting")
 					action = PLANTING
 					color = Color.green
 					
@@ -82,6 +85,9 @@ func _input(event):
 				active_plant = Main.hovered_plants[0]
 				active_plant.watered = true
 			else:
+				if not $Harvesting.playing:
+					$Harvesting.play()
+					print("Harvesting")
 				action = HARVESTING
 				color = Color.yellow
 				

@@ -45,8 +45,7 @@ func _process(delta):
 	if $Area2D.input_pickable:
 		if watered:
 			health = min(health + delta * 0.5, 1)
-			if health >= 1:
-				extrahealth = 3
+			extrahealth = 3
 		elif stage == Stage.Seed:
 			if extrahealth > 0:
 				extrahealth -= delta
