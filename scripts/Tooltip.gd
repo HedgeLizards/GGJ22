@@ -7,7 +7,6 @@ enum { IDLE, PLANTING, WATERING, HARVESTING }
 var action = IDLE
 var active_plant
 var animation = 0
-var color
 var camera_offset
 var mouse_position_global
 var mouse_position
@@ -45,7 +44,7 @@ func update_position_and_visibility():
 	mouse_position = (mouse_position_global - camera_offset) * Camer.zoom
 	
 	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 750 && Main.hovered_plants.empty()):
-		rect_position = mouse_position_global - Vector2(rect_size.x / 2, rect_size.y + 10)
+		rect_position = mouse_position_global - Vector2(rect_size.x / 2, rect_size.y + 20)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
 		
@@ -62,7 +61,6 @@ func _input(event):
 			
 			if Main.hovered_plants.empty():
 				action = PLANTING
-				color = Color.green
 				
 				$Tween.interpolate_property(self, 'animation', 0, 1, 1)
 				$Tween.start()
@@ -73,7 +71,6 @@ func _input(event):
 				active_plant.watered = true
 			else:
 				action = HARVESTING
-				color = Color.yellow
 				
 				active_plant = Main.hovered_plants[0]
 				
@@ -109,7 +106,6 @@ func _on_Tween_tween_completed(object, key):
 				var new_plant = Plant.instance()
 				
 				new_plant.position = mouse_position
-				new_plant.position.y -= 10
 				
 				Main.add_child(new_plant)
 			HARVESTING:
@@ -124,6 +120,32 @@ func _on_Tween_tween_completed(object, key):
 		update()
 
 func _draw():
-	if action == PLANTING || action == HARVESTING:
-		draw_rect(Rect2(rect_size.x / 2 - 82, rect_size.y - 12, 164, 10), color, false, 4)
-		draw_rect(Rect2(rect_size.x / 2 - 80, rect_size.y - 10, 160 * animation, 6), color)
+	var color_end
+	
+	match action:
+		PLANTING:
+			color_end = Color.green
+		HARVESTING:
+			color_end = Color.yellow
+		_:
+			return
+		
+	var color_start = color_end
+	
+	color_start.r /= 2
+	color_start.g /= 2
+	color_start.b /= 2
+	
+	draw_rect(Rect2(rect_size.x / 2 - 62, rect_size.y - 12, 124, 10), color_start, false, 4)
+	
+	draw_polygon([
+		Vector2(rect_size.x / 2 - 60, rect_size.y - 10),
+		Vector2(rect_size.x / 2 - 60 + 120 * animation, rect_size.y - 10),
+		Vector2(rect_size.x / 2 - 60 + 120 * animation, rect_size.y - 10 + 6),
+		Vector2(rect_size.x / 2 - 60, rect_size.y - 10 + 6)
+	], [
+		color_start,
+		color_end,
+		color_end,
+		color_start
+	])
