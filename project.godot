@@ -12,7 +12,7 @@ config_version=4
 
 config/name="GGJ 22"
 run/main_scene="res://scenes/Main.tscn"
-config/icon="res://assets/icon.png"
+config/icon="res://assets/counter_plant.png"
 
 [debug]
 
