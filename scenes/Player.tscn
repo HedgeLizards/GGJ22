@@ -33,10 +33,10 @@ position = Vector2( 0, -43 )
 shape = SubResource( 1 )
 
 [node name="Shotgun" type="Node2D" parent="."]
-position = Vector2( 0, -60 )
+position = Vector2( 0, -70 )
 
 [node name="Sprite" type="Sprite" parent="Shotgun"]
-position = Vector2( 88, -8 )
+position = Vector2( 85, -10 )
 texture = ExtResource( 4 )
 
 [node name="FireSprite" type="Sprite" parent="Shotgun"]

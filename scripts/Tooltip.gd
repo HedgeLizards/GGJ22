@@ -10,9 +10,11 @@ var animation = 0
 var camera_offset
 var mouse_position_global
 var mouse_position
+var can_plant = true
 
 onready var Main = get_parent().get_parent()
 onready var Player = Main.get_node('Player')
+onready var Pointer = Main.get_node('Pointer')
 onready var Camer = Player.get_node('Camera')
 
 func daychange(is_night):
@@ -27,6 +29,11 @@ func daychange(is_night):
 	set_process_input(not is_night)
 
 func _process(delta):
+	
+	if Main.hovered_plants.empty() and Pointer.get_overlapping_bodies().size() > 0:
+		can_plant = false
+	else:
+		can_plant = true
 	if action == IDLE:
 		update_position_and_visibility()
 	else:
@@ -43,7 +50,7 @@ func update_position_and_visibility():
 	mouse_position_global = get_global_mouse_position()
 	mouse_position = (mouse_position_global - camera_offset) * Camer.zoom
 	
-	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 750 && Main.hovered_plants.empty()):
+	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 750 && Main.hovered_plants.empty()) and can_plant:
 		rect_position = mouse_position_global - Vector2(rect_size.x / 2, rect_size.y + 20)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
@@ -56,14 +63,17 @@ func update_position_and_visibility():
 
 func _input(event):
 	if visible && event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		
 		if event.pressed:
 			percent_visible = 0
 			
+			#visible = true
 			if Main.hovered_plants.empty():
-				action = PLANTING
-				
-				$Tween.interpolate_property(self, 'animation', 0, 1, 1)
-				$Tween.start()
+				if Pointer.get_overlapping_bodies().size() == 0:
+					action = PLANTING
+					
+					$Tween.interpolate_property(self, 'animation', 0, 1, 1)
+					$Tween.start()
 			elif Main.hovered_plants[0].stage == 0:
 				action = WATERING
 				
