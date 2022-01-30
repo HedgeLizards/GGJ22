@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/day_ground.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tooltip.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/night_ground.png" type="Texture" id=8]
 [ext_resource path="res://scripts/Camer.gd" type="Script" id=9]
 [ext_resource path="res://scripts/Environment.gd" type="Script" id=10]
+[ext_resource path="res://assets/counter_plant.png" type="Texture" id=11]
 [ext_resource path="res://assets/MUS_Day.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/MUS_Night_StaticBPM_Main.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/FiraSans-ExtraBold.otf" type="DynamicFontData" id=15]
@@ -20,6 +21,12 @@
 [ext_resource path="res://scenes/Plant.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/day_hills.png" type="Texture" id=21]
 [ext_resource path="res://assets/night_hills.png" type="Texture" id=22]
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -35,6 +42,35 @@ light_mode = 1
 script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -125.0
+margin_top = 25.0
+margin_right = -125.0
+margin_bottom = 100.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 25.0
+margin_right = 25.0
+margin_bottom = -100.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tooltip" type="Label" parent="CanvasLayer" groups=["dual"]]
 visible = false
