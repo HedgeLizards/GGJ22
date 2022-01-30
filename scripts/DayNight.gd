@@ -45,11 +45,11 @@ func turn_night():
 	$BeatTimer.start()
 	$DayMusic.stop()
 	$DayOutro.play(0.0)
-	HUD.get_node("Heart").visible = true
+	HUD.get_node("HeartIcon").visible = true
 	HUD.get_node("HeartLabel").visible = true
-	HUD.get_node("Moon").visible = false
+	HUD.get_node("MoonIcon").visible = false
 	HUD.get_node("MoonLabel").visible = false
-	HUD.get_node("Plant").visible = false
+	HUD.get_node("PlantIcon").visible = false
 	HUD.get_node("PlantLabel").visible = false
 	VisualServer.set_default_clear_color(Color.black)
 
@@ -73,12 +73,12 @@ func turn_day():
 	$DayMusic.play(0.0)
 	if initialized:
 		$NightOutro.play(0.0)
-		HUD.get_node("Heart").visible = false
+		HUD.get_node("HeartIcon").visible = false
 		HUD.get_node("HeartLabel").visible = false
-		HUD.get_node("Moon").visible = true
+		HUD.get_node("MoonIcon").visible = true
 		HUD.get_node("MoonLabel").text = str(ndays - 1)
 		HUD.get_node("MoonLabel").visible = true
-		HUD.get_node("Plant").visible = true
+		HUD.get_node("PlantIcon").visible = true
 		HUD.get_node("PlantLabel").visible = true
 	VisualServer.set_default_clear_color(Color(155, 246, 255, 255) / 255.0)
 
