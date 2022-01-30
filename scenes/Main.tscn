@@ -235,7 +235,7 @@ scale = Vector2( 1, 76.8 )
 
 [node name="TopEdge" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1024.5, 690 )
-scale = Vector2( 102.45, 1 )
+scale = Vector2( 1000, 1 )
 collision_layer = 3
 
 [node name="BottomEdge" parent="." instance=ExtResource( 4 )]
@@ -282,18 +282,22 @@ script = ExtResource( 6 )
 
 [node name="Plant" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 374.5, 970.75 )
+stage = 2
 
 [node name="Plant5" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 1024.5, 1470.75 )
 
 [node name="Plant4" parent="InitialPlants" instance=ExtResource( 20 )]
-position = Vector2( 1674.5, 1970.75 )
+position = Vector2( 1674.5, 1750 )
+stage = 2
 
 [node name="Plant2" parent="InitialPlants" instance=ExtResource( 20 )]
-position = Vector2( 374.5, 1970.75 )
+position = Vector2( 374.5, 1700 )
 
 [node name="Plant3" parent="InitialPlants" instance=ExtResource( 20 )]
 position = Vector2( 1674.5, 970.75 )
+scale = Vector2( 1, 1.00402 )
+stage = 2
 
 [connection signal="tween_completed" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_completed"]
 [connection signal="tween_step" from="HUD/Tooltip/Tween" to="HUD/Tooltip" method="_on_Tween_tween_step"]

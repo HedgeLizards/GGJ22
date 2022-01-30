@@ -1,7 +1,8 @@
 extends Node2D
 
+enum Stage {Seed = 0, Growing = 1, Grown = 2}
+export (Stage) var stage = Stage.Seed
 var health = 1
-var new = true
 var watered = false
 var colliding_bunnies = 0
 
@@ -12,18 +13,26 @@ func _ready():
 	z_index = position.y
 
 func daychange(is_night):
+	if is_night and stage <= Stage.Seed:
+		stage = Stage.Growing
+	elif stage == Stage.Growing:
+		stage = Stage.Grown
+	
 	if is_night:
-		if new:
-			new = false
-			
+		if stage == Stage.Growing:
 			$Sprite.texture = preload('res://assets/night_plant_growing.png')
-		else:
+			$Light.scale.x = 0.6
+			$Light.scale.y = 0.6
+		elif stage == Stage.Grown:
 			$Sprite.texture = preload('res://assets/night_plant_grown.png')
-			
+			$Light.scale.x = 1
+			$Light.scale.y = 1
+		
 		$Area2D.input_pickable = false
 		$Light.visible = true
-	elif !new:
-		$Sprite.texture = preload('res://assets/day_plant_grown.png')
+	else:
+		if stage == Stage.Grown:
+			$Sprite.texture = preload('res://assets/day_plant_grown.png')
 		
 		$Area2D.input_pickable = true
 		$Light.visible = false
@@ -33,7 +42,7 @@ func _process(delta):
 	if $Area2D.input_pickable:
 		if watered:
 			health = min(health + delta / 2, 1)
-		elif new:
+		elif stage == Stage.Seed:
 			health = max(health - delta / 20, 0)
 	else:
 		health -= delta / 10 * colliding_bunnies
@@ -53,7 +62,7 @@ func _on_Area2D_body_exited(body):
 func _on_Area2D_mouse_entered():
 	Main.hovered_plants.push_back(self)
 	
-	Tooltip.text = 'Click and hold to %s the plant' % ('water' if new else 'harvest')
+	Tooltip.text = 'Click and hold to %s the plant' % ('water' if stage == Stage.Seed else 'harvest')
 
 func _on_Area2D_mouse_exited():
 	Main.hovered_plants.erase(self)
@@ -62,7 +71,7 @@ func _on_Area2D_mouse_exited():
 		Tooltip.text = 'Click and hold to plant a seed'
 
 func _draw():
-	var color = Color.blue if new else Color.red
+	var color = Color.blue if stage == Stage.Seed else Color.red
 
 	if $Area2D.input_pickable && (Main.hovered_plants.empty() || Main.hovered_plants[0] != self):
 		color[3] = 0.4

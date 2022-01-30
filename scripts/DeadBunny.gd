@@ -8,7 +8,7 @@ func daychange(is_night):
 	if not is_night:
 		$Corpse.visible = false
 		$Carcass.visible = true
-		$Timer.start(2 + randf() * 5)
+		$Timer.start(2 + randf() * 10)
 
 
 func _process(delta):
