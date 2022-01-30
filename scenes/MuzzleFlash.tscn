@@ -8,7 +8,7 @@ script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 1 )
-energy = 0.43
+energy = 0.8
 range_z_min = -4096
 range_z_max = 4096
 

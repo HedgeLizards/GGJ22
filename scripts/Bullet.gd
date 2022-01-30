@@ -21,7 +21,7 @@ func _on_Bullet_body_entered(body):
 	if body.has_method("is_enemy") and body.is_enemy():
 		body.health -= 5
 		if body.health <= 0:
-			body.die()
+			body.die(self.global_rotation)
 	queue_free()
 
 func daychange(is_night):

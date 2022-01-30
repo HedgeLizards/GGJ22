@@ -95,8 +95,10 @@ func is_enemy():
 	return true
 
 
-func die():
+func die(direction):
 	var corpse = DeadBunny.instance()
+	corpse.vel = 0.2
+	corpse.dir = Vector2(10, 0).rotated(direction)
 	corpse.global_transform = global_transform
 	corpse.scale.x = $Body.scale.x
 	corpse.z_index = z_index

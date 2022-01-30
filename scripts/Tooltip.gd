@@ -64,7 +64,7 @@ func _input(event):
 				action = PLANTING
 				color = Color.green
 				
-				$Tween.interpolate_property(self, 'animation', 0, 1, 2)
+				$Tween.interpolate_property(self, 'animation', 0, 1, 1)
 				$Tween.start()
 			elif Main.hovered_plants[0].stage == 0:
 				action = WATERING
@@ -77,7 +77,7 @@ func _input(event):
 				
 				active_plant = Main.hovered_plants[0]
 				
-				$Tween.interpolate_property(self, 'animation', 0, 1, 2)
+				$Tween.interpolate_property(self, 'animation', 0, 1, 1)
 				$Tween.start()
 		else:
 			release_action()
