@@ -13,6 +13,7 @@ func _ready():
 	
 	get_viewport().connect('size_changed', self, 'change_zoom')
 	change_zoom()
+	
 
 func change_zoom():
 	var ratio = Vector2(2049, 2238.75) / OS.window_size

@@ -8,21 +8,15 @@ var cooldown = 0
 var recoil_dir = Vector2(0, 0)
 var recoil = 0
 var waggle_time = 0
+var max_health = 1
+var player_health = max_health
+var collidingbunnies = 0
 
 const Bullet = preload("res://scenes/Bullet.tscn")
 const MuzzleFlash = preload("res://scenes/MuzzleFlash.tscn")
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	z_index = position.y
-
-
-
-#func _input(event):
-	#if event.is_action_pressed("shoot") and get_node("/root/Main/DayNight").is_night():
-		#shoot()
-
 
 func shoot():
 	for i in range(-1, 2):
@@ -54,10 +48,21 @@ func _physics_process(delta):
 	
 	recoil -= delta
 	
+	if collidingbunnies > 0:
+		player_health -= delta * collidingbunnies * 0.1
+	elif is_night:
+		player_health += delta * 0.01
+	else:
+		player_health += delta * 0.5
+	
+	if player_health < 0:
+		get_tree().quit()
+	player_health = min(player_health, max_health)
+	
 	if inp.x > 0:
-		$Body.scale.x = 1
+		$Body.scale.x = abs($Body.scale.x)
 	elif inp.x < 0:
-		$Body.scale.x = -1
+		$Body.scale.x = -abs($Body.scale.x)
 	var vel = inp.normalized()
 	if is_night:
 		vel *= night_speed
@@ -88,3 +93,10 @@ func daychange(is_night):
 func _on_FireTimer_timeout():
 	$Shotgun/Sprite.visible = true
 	$Shotgun/FireSprite.visible = false
+	
+func _on_Hitbox_body_entered(body):
+	collidingbunnies += 1
+	
+
+func _on_Hitbox_body_exited(body):
+	collidingbunnies += 1
