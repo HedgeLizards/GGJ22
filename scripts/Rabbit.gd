@@ -15,6 +15,8 @@ var is_dead = false
 
 const DeadBunny = preload("res://scenes/DeadBunny.tscn")
 
+onready var Main = get_node("/root/Main")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	z_index = position.y
@@ -107,6 +109,7 @@ func die(direction):
 	corpse.scale.x = $Body.scale.x
 	corpse.z_index = z_index
 	get_parent().add_child(corpse)
+	Main.rabbits_killed += 1
 	queue_free()
 
 

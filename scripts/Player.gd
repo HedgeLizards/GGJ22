@@ -66,6 +66,7 @@ func _physics_process(delta):
 	Main.get_node("HUD/HeartLabel").text = '%d%%' % (player_health * 100)
 	if player_health == 0:
 		Stats.plants_harvested = Main.plants_harvested
+		Stats.rabbits_killed = Main.rabbits_killed
 		Stats.nights_survived = Main.get_node("DayNight").ndays - 1
 		get_tree().change_scene_to(preload("res://scenes/End.tscn"))
 	
