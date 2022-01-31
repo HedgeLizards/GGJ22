@@ -11,6 +11,7 @@ var waggle_time = 0
 var max_health = 1
 var player_health = max_health
 var collidingbunnies = 0
+var moved = 0
 
 onready var Main = get_node("/root/Main")
 
@@ -44,9 +45,12 @@ func _physics_process(delta):
 		int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	)
 	if inp.length():
+		moved += delta
 		waggle_time += delta
 	else:
 		waggle_time = 0
+	if moved > 1:
+		$MoveInstruction.modulate.a -= delta * 2
 	$Body.rotation = sin(waggle_time * (10 + int(is_night) * 10))/(10 - int(is_night) * 5)
 	
 	recoil -= delta

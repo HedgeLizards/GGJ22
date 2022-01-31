@@ -344,6 +344,7 @@ script = ExtResource( 35 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Canary"]
 frames = SubResource( 6 )
+frame = 1
 playing = true
 
 [node name="IShouldPlant" type="AudioStreamPlayer" parent="."]
