@@ -1,7 +1,7 @@
 extends Area2D
 
 export var speed = 8000
-export var distance = 1200
+export var distance = 2400
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
