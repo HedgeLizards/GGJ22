@@ -23,4 +23,4 @@ func _on_Spawner_timeout():
 		var top_y = get_node("/root/Main/TopEdge").position.y + 100
 		var bottom_y = get_node("/root/Main/BottomEdge").position.y
 		bunny.global_position.y = top_y + randf() * (bottom_y - top_y)
-		start(max(1, delay - ndays))
+		start(max(0, delay - ndays))
