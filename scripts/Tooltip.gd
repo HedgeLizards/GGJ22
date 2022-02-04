@@ -72,7 +72,6 @@ func _input(event):
 				if Pointer.get_overlapping_bodies().size() == 0:
 					if not $Planting.playing:
 						$Planting.play()
-						print("Planting")
 					action = PLANTING
 					
 					$Tween.interpolate_property(self, 'animation', 0, 1, 1)
@@ -85,7 +84,6 @@ func _input(event):
 			else:
 				if not $Harvesting.playing:
 					$Harvesting.play()
-					print("Harvesting")
 				action = HARVESTING
 				
 				active_plant = Main.hovered_plants[0]
