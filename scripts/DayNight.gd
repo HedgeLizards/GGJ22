@@ -9,6 +9,7 @@ var initialized = false
 var nbeats = 0
 var ndays = 0 # The first day this is immidiately incremented so ndays 1 is the first day
 
+onready var Main = get_node("/root/Main")
 onready var HUD = get_node("/root/Main/HUD")
 
 #var startspeed = 2
@@ -25,7 +26,12 @@ func _process(delta):
 		if nbeats < $NightMusic.get_playback_position() * 2:
 			get_tree().call_group("onbeat", "onbeat")
 			nbeats += 1
-			
+	
+	var day_left = ($DayMusic.stream.get_length() - $DayMusic.get_playback_position()) / 2
+	if day and day_left < 1:
+		Main.modulate.v = day_left
+	else:
+		Main.modulate.v = 1
 
 func is_day():
 	return day
