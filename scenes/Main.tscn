@@ -27,7 +27,7 @@
 [ext_resource path="res://assets/lightmask.png" type="Texture" id=25]
 [ext_resource path="res://assets/counter_heart.png" type="Texture" id=26]
 [ext_resource path="res://assets/counter_moon.png" type="Texture" id=27]
-[ext_resource path="res://scripts/Pointer.gd" type="Script" id=28]
+[ext_resource path="res://scenes/Pointer.tscn" type="PackedScene" id=28]
 [ext_resource path="res://assets/SFX_Planting.wav" type="AudioStream" id=29]
 [ext_resource path="res://assets/SFX_Harvesting.wav" type="AudioStream" id=30]
 [ext_resource path="res://assets/2.png" type="Texture" id=31]
@@ -51,13 +51,13 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 15 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 9.935, 7.46 )
+
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id=2]
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 1.0
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -158,7 +158,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tooltip" type="Label" parent="HUD" groups=["dual"]]
+[node name="Tooltip" type="Label" parent="HUD" groups=["dual", "hover_monitor"]]
 visible = false
 margin_right = 188.0
 margin_bottom = 14.0
@@ -183,6 +183,17 @@ stream = ExtResource( 30 )
 [node name="Environment" type="Node2D" parent="." groups=["dual"]]
 scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 10 )
+
+[node name="Plantable" type="Area2D" parent="Environment"]
+scale = Vector2( 1.33333, 1.33333 )
+collision_layer = 64
+collision_mask = 64
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Plantable"]
+position = Vector2( 1014.5, 1479 )
+scale = Vector2( 100, 100 )
+shape = SubResource( 7 )
 
 [node name="Day" type="Node2D" parent="Environment"]
 z_index = -4096
@@ -329,13 +340,7 @@ stage = 2
 position = Vector2( 1674.5, 970.75 )
 stage = 2
 
-[node name="Pointer" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 32
-script = ExtResource( 28 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
-shape = SubResource( 5 )
+[node name="Pointer" parent="." instance=ExtResource( 28 )]
 
 [node name="Canary" type="Node2D" parent="."]
 position = Vector2( -500, 400 )
@@ -344,7 +349,7 @@ script = ExtResource( 35 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Canary"]
 frames = SubResource( 6 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="IShouldPlant" type="AudioStreamPlayer" parent="."]

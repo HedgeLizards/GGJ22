@@ -12,7 +12,7 @@ var mouse_position_global
 var mouse_position
 var can_plant = true
 
-onready var Main = get_parent().get_parent()
+onready var Main = get_node("/root/Main")
 onready var Player = Main.get_node('Player')
 onready var Pointer = Main.get_node('Pointer')
 onready var Camer = Player.get_node('Camera')
@@ -30,7 +30,7 @@ func daychange(is_night):
 
 func _process(delta):
 	
-	if Main.hovered_plants.empty() and Pointer.get_overlapping_bodies().size() > 0:
+	if Pointer.hovered_plants().empty() and not Pointer.can_plant():
 		can_plant = false
 	else:
 		can_plant = true
@@ -50,7 +50,7 @@ func update_position_and_visibility():
 	mouse_position_global = get_global_mouse_position()
 	mouse_position = (mouse_position_global - camera_offset) * Camer.zoom
 	
-	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 750 && Main.hovered_plants.empty()) and can_plant:
+	if mouse_position.distance_to(Player.position) < 500 && !(mouse_position.y < 750 && Pointer.hovered_plants().empty()) and can_plant:
 		rect_position = mouse_position_global - Vector2(rect_size.x / 2, rect_size.y + 20)
 		
 		Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
@@ -61,6 +61,27 @@ func update_position_and_visibility():
 		
 		visible = false
 
+func update_hovered():
+	print("updating tooltip")
+	visible = false
+	Input.set_default_cursor_shape(CURSOR_ARROW)
+	var hovered_plants = Pointer.hovered_plants()
+	if hovered_plants.empty():
+		if Pointer.can_plant():
+			visible = true
+			text = 'Click and hold to plant a seed'
+			Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
+	else:
+		var plant = hovered_plants[0]
+		if plant.can_water():
+			visible = true
+			text = 'Click and hold to water the plant'
+			Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
+		elif plant.can_harvest():
+			visible = true
+			text = 'Click and hold to harvest the plant'
+			Input.set_default_cursor_shape(CURSOR_POINTING_HAND)
+
 func _input(event):
 	if visible && event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		
@@ -68,25 +89,26 @@ func _input(event):
 			percent_visible = 0
 			
 			#visible = true
-			if Main.hovered_plants.empty():
-				if Pointer.get_overlapping_bodies().size() == 0:
+			var hovered_plants = Pointer.hovered_plants()
+			if hovered_plants.empty():
+				if Pointer.can_plant():
 					if not $Planting.playing:
 						$Planting.play()
 					action = PLANTING
 					
 					$Tween.interpolate_property(self, 'animation', 0, 1, 1)
 					$Tween.start()
-			elif Main.hovered_plants[0].stage == 0:
+			elif hovered_plants[0].stage == 0:
 				action = WATERING
 				
-				active_plant = Main.hovered_plants[0]
+				active_plant = hovered_plants[0]
 				active_plant.watered = true
 			else:
 				if not $Harvesting.playing:
 					$Harvesting.play()
 				action = HARVESTING
 				
-				active_plant = Main.hovered_plants[0]
+				active_plant = hovered_plants[0]
 				
 				$Tween.interpolate_property(self, 'animation', 0, 1, 1)
 				$Tween.start()
@@ -123,7 +145,6 @@ func _on_Tween_tween_completed(object, key):
 				
 				Main.add_child(new_plant)
 			HARVESTING:
-				active_plant._on_Area2D_mouse_exited()
 				active_plant.queue_free()
 				
 				Main.plants_harvested += 1

@@ -55,7 +55,6 @@ func _process(delta):
 		health -= delta / 10 * colliding_bunnies
 		
 		if health < 0:
-			_on_Area2D_mouse_exited()
 			queue_free()
 	
 	update()
@@ -66,16 +65,12 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	colliding_bunnies -= 1
 
-func _on_Area2D_mouse_entered():
-	Main.hovered_plants.push_back(self)
-	
-	Tooltip.text = 'Click and hold to %s the plant' % ('water' if stage == Stage.Seed else 'harvest')
 
-func _on_Area2D_mouse_exited():
-	Main.hovered_plants.erase(self)
-	
-	if Main.hovered_plants.empty():
-		Tooltip.text = 'Click and hold to plant a seed'
+func can_water():
+	return stage == Stage.Seed
+
+func can_harvest():
+	return stage == Stage.Grown
 
 func _draw():
 	var color_end = Color.blue if stage == Stage.Seed else Color.red

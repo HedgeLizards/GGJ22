@@ -1,16 +1,20 @@
-extends Area2D
+extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position = get_global_mouse_position()
+
+func near_player():
+	return not $NearPlayer.get_overlapping_areas().empty()
+
+func can_plant():
+	return $TooClose.get_overlapping_areas().empty() and not $InField.get_overlapping_areas().empty() and near_player()
+
+func hovered_plants():
+	var plants = []
+	for area in $Plants.get_overlapping_areas():
+		plants.push_back(area.get_parent())
+	return plants
+
+func update_hovered(_area):
+	get_tree().call_group("hover_monitor", "update_hovered")

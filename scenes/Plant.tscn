@@ -15,9 +15,8 @@ radius = 300.0
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-monitorable = false
+collision_layer = 20
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
@@ -33,7 +32,7 @@ mode = 2
 range_z_min = -4096
 range_z_max = 4096
 
-[node name="FarShape" type="StaticBody2D" parent="."]
+[node name="FarShape" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 32
 
