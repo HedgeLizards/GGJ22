@@ -28,10 +28,7 @@ func _process(delta):
 			nbeats += 1
 	
 	var day_left = ($DayMusic.stream.get_length() - $DayMusic.get_playback_position()) / 2
-	if day and day_left < 1:
-		Main.modulate.v = day_left
-	else:
-		Main.modulate.v = 1
+
 
 func is_day():
 	return day
